@@ -44,11 +44,13 @@ Download the archive for your computer. Check its SHA-256 checksum, extract it, 
 
 ## Verification and release status
 
+[![Ordinary Go checks on main](https://github.com/jpet121/Release-Evidence-Board/actions/workflows/verify.yml/badge.svg?branch=main&event=push)](https://github.com/jpet121/Release-Evidence-Board/actions/workflows/verify.yml)
+
 This M1 prerelease is for synthetic evaluation. The engineering record for application revision `32ba36c` reports 100% measured production line and branch coverage on Windows and Linux, with zero exclusions. It includes recovery tests, browser checks, and targeted mutation tests.
 
 Formal acceptance is still open. The team needs manual accessibility observations, including Safari with VoiceOver, and capacity and recovery results on the specified reference machine. The full mutation campaign is deferred under an M1 exception.
 
-[Verification results and limits](evidence/verification.md) · [Public Windows and Linux checks](https://github.com/jpet121/Release-Evidence-Board/actions/workflows/verify.yml) · [Prerelease files and notes](https://github.com/jpet121/Release-Evidence-Board/releases/tag/v1.0.0-m1-rc.1)
+[Verification results and limits](evidence/verification.md) · [Verified Windows and Linux run](https://github.com/jpet121/Release-Evidence-Board/actions/runs/45654657907) · [Prerelease files and notes](https://github.com/jpet121/Release-Evidence-Board/releases/tag/v1.0.0-m1-rc.1)
 
 ## Maintain the project
 

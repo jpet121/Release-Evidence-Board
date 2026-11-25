@@ -72,6 +72,12 @@ Formal M1 technical acceptance remains **BLOCKED_MISSING_REQUIRED_OBSERVATIONS**
 
 The documented M1 requirements basis, five behavior interpretations, and local validator disposition have recorded owner approvals. Later adoption studies remain at their later stage. Optional AI features stay off. An in-app SUFFICIENT result does not establish application acceptance or deployment authority.
 
+## Public GitHub checks
+
+The [pull-request run](https://github.com/jpet121/Release-Evidence-Board/actions/runs/45653669537) and [merged revision `74eac94`](https://github.com/jpet121/Release-Evidence-Board/actions/runs/45654657907) passed the ordinary Go tests, module verification, and `go vet` on Windows and Linux. Linux also passed the tagged storage-fault suite on a private 16 MiB filesystem. The two Windows path tests exercised backup and restore at the measured native boundary.
+
+A comparison against the 250 files in the prerelease source inventory found differences only in the two Windows test fixtures described above. The qualified coverage counts in this document still refer to the prerelease measurements.
+
 ## Repeat ordinary checks
 
 Use Go 1.27.4. From the root, run `go test -count=1 ./...` and `go vet ./...`. On Linux, also run `bash .github/scripts/test-linux-storage.sh` from the repository root. The script uses `sudo` to mount a private 16 MiB memory filesystem. It runs the tagged tests as your current user and unmounts the filesystem on exit. The disk-full test checks that the app preserves the earlier receipt and frozen report after a real write fails. These commands do not reproduce the qualified line/branch campaign. CI uses ordinary checks and does not start full mutation.
