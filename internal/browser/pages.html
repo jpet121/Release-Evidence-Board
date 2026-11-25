@@ -1,0 +1,311 @@
+{{define "head"}}<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{.Title}} · Release Evidence Board</title><link rel="stylesheet" href="/style.css">
+{{if .AutoRefresh}}{{/* Allow time for the request and assessment within the 60-second limit. */}}<meta http-equiv="refresh" content="59">{{end}}
+</head><body>
+<a href="#main" class="skip">Skip to workspace</a>
+{{if .Account.ID}}
+<aside>
+<a href="{{projectURL .Project}}" class="brand"><span aria-hidden="true"></span>Release<br>Evidence Board</a>
+<nav aria-label="Workspace">{{if .Account.CanView}}<a href="{{projectURL .Project}}">Candidates</a><a href="{{projectURL .Project}}/baselines">Baselines</a>{{end}}{{if .Account.CanOperate}}<a href="{{projectURL .Project}}/health">Operator health</a>{{end}}</nav>
+<div class="identity"><span>{{.Account.ID}}</span><span class="muted">AI off</span></div>
+<form action="/logout" method="post">{{template "csrf" .}}<button class="secondary" type="submit">Sign out</button></form>
+</aside>
+{{end}}
+<main id="main"><header class="page-title">{{if .Product}}<p class="workname">{{.Product}} <span aria-hidden="true">/</span> {{.Project}}</p>{{end}}<h1 tabindex="-1">{{.Title}}</h1></header>
+{{if .IntegrityWarning}}<p class="notice" role="alert">Evidence integrity warning. New assessments and exports are suspended pending verification and reviewer revalidation.</p>{{end}}
+{{if .Notice}}<p class="notice" role="status">{{.Notice}}</p>{{end}}
+{{end}}
+{{define "foot"}}</main></body></html>{{end}}
+{{define "csrf"}}<input type="hidden" name="_csrf" value="{{.CSRF}}">{{end}}
+
+{{define "login"}}
+<section class="panel narrow">
+<p>Sign in with your assigned pilot account.</p>
+<form method="post" action="/login" class="stack">{{template "csrf" .}}
+<label>Account ID<input type="text" name="actor" autocomplete="username" maxlength="80" required autofocus></label>
+<label>Password<input type="password" name="password" autocomplete="current-password" required></label>
+<button type="submit">Sign in</button>
+</form></section>
+{{end}}
+{{define "error"}}
+{{if .Project}}<a class="button secondary" href="{{projectURL .Project}}">Return to workspace</a>{{else}}<a class="button secondary" href="/">Return to board</a>{{end}}
+{{end}}
+
+{{define "workspace"}}
+<div class="actions">{{if .Account.CanContribute}}<a class="button" href="{{projectURL .Project}}/candidates/new">Create candidate</a>{{end}}<a class="button secondary" href="{{projectURL .Project}}/baselines">Open baselines</a></div>
+<section class="panel"><h2>Active candidates</h2>
+{{if .Data}}<ul class="rows">{{range .Data}}<li>
+<a href="{{projectURL $.Project}}/candidates/{{.ID}}">{{.DisplayVersion}}</a>
+<div class="muted"><time>{{utc .CreatedAt}}</time> · Candidate <code>{{.ID}}</code></div>
+</li>{{end}}</ul>
+{{else}}<p><span class="status">? NOT_ASSESSABLE</span></p><p>Approve a behavior baseline, then create the candidate pair before importing results.</p>{{end}}
+</section>
+{{end}}
+
+{{define "baselines"}}
+<section class="panel"><h2>Approved baselines</h2>
+{{if .Data.Approved}}<ul class="rows">{{range .Data.Approved}}<li>
+<h3>{{.Baseline.ID}} · revision {{.Baseline.Revision}}</h3>
+<p>Approved by {{.Approver}} · <time>{{utc .ApprovedAt}}</time>{{if .SelfApproval}} · self-approval{{end}}</p>
+<p><code>{{.Descriptor.Digest}}</code></p>
+<div class="actions"><a class="button secondary" href="{{projectURL $.Project}}/baselines/{{.Descriptor.Digest}}">Download descriptor</a>
+{{if $.Account.CanContribute}}
+<form method="post" action="{{projectURL $.Project}}/drafts">{{template "csrf" $}}<input type="hidden" name="baseline" value="{{.Descriptor.Digest}}"><button class="secondary">Draft revision</button></form>
+<a class="button secondary" href="{{projectURL $.Project}}/candidates/new?baseline={{.Descriptor.Digest}}">Create candidate</a>
+{{end}}</div>
+</li>{{end}}</ul>{{else}}<p>No baseline has been approved.</p>{{end}}
+</section>
+<section class="panel"><h2>Drafts</h2>
+{{if .Data.Drafts}}<ul class="rows">{{range .Data.Drafts}}<li><a href="{{projectURL $.Project}}/drafts/{{.ID}}">{{.Baseline.ID}} · revision {{.Baseline.Revision}}</a> · {{.Author}}{{if .ApprovedDigest}} · Approved{{end}}</li>{{end}}</ul>{{else}}<p>No drafts are saved.</p>{{end}}
+{{if .Account.CanContribute}}<form method="post" action="{{projectURL .Project}}/drafts" class="stack narrow">{{template "csrf" .}}<label>New baseline ID<input name="baseline_id" required maxlength="80" pattern="[A-Za-z0-9_.\-]+"></label><button>Create draft</button></form>{{end}}
+</section>
+{{end}}
+
+{{define "draft"}}
+{{$draft := .Data}}
+<p><a href="{{projectURL .Project}}/baselines">Back to baselines</a></p>
+<div class="facts"><span>Baseline revision {{$draft.Baseline.Revision}}</span><span>Draft revision {{$draft.Revision}}</span><span>Author {{$draft.Author}}</span></div>
+{{if $draft.ApprovedDigest}}<section class="panel"><h2>Approved revision</h2><p><code>{{$draft.ApprovedDigest}}</code></p><a href="{{projectURL .Project}}/baselines/{{$draft.ApprovedDigest}}">Download approved descriptor</a></section>{{end}}
+{{if $draft.LowerMarks}}<section class="panel"><h2>Independent reviewer required</h2><ul>{{range $draft.LowerMarks}}<li>{{.BehaviorID}} · {{.Before}} to {{.After}} basis points · reduced by {{range .ReducingActors}}{{.}} {{end}} · <a href="{{projectURL $.Project}}/candidates/{{.CandidateID}}">Affected candidate</a></li>{{end}}</ul></section>{{end}}
+{{range $i, $b := $draft.Baseline.Behaviors}}
+<section class="panel"><h2>Behavior {{$b.ID}}</h2>
+{{if and $.Account.CanContribute (not $draft.ApprovedDigest)}}
+<form method="post" class="stack" action="{{projectURL $.Project}}/drafts/{{$draft.ID}}">
+{{template "csrf" $}}<input type="hidden" name="revision" value="{{$draft.Revision}}"><input type="hidden" name="behavior_index" value="{{$i}}">
+{{$inherited := $draft.InheritedBehavior $b.ID}}
+<div class="form-grid"><label>Behavior ID<input name="behavior_id" value="{{if $inherited}}{{$b.ID}}{{else}}{{$draft.InputValue $i "behavior_id" $b.ID}}{{end}}" required maxlength="80" {{if $inherited}}readonly{{end}}></label>
+<label>Policy ID<input name="policy_id" value="{{$draft.InputValue $i "policy_id" $b.Policy.ID}}" required maxlength="80"></label>
+<label>Minimum pass basis points<input type="number" name="minimum" min="0" max="10000" value="{{$draft.InputValue $i "minimum" $b.Policy.MinPassBasisPoints}}" required></label>
+<label>Maximum age in hours<input type="number" name="max_age" min="1" max="720" value="{{$draft.InputValue $i "max_age" $b.Policy.MaxAgeHours}}" required></label></div>
+<label class="check"><input type="checkbox" name="required" value="1" {{if $draft.InputChecked $i "required" $b.Required}}checked{{end}}> Required behavior</label>
+<label>Behavior text<textarea name="text" maxlength="4000" rows="3" required>{{$draft.InputValue $i "text" $b.Text}}</textarea></label>
+{{range $j, $t := $b.Tests}}<fieldset><legend>Test {{$t.ID}}</legend>
+<div class="form-grid"><label>Test ID<input name="test_{{$j}}" value="{{$draft.InputValue $i (printf "test_%d" $j) $t.ID}}" required maxlength="80"></label>
+<label>Planned attempts<input type="number" name="attempts_{{$j}}" value="{{$draft.InputValue $i (printf "attempts_%d" $j) $t.PlannedAttempts}}" min="1" max="100" required></label></div>
+<label>Expected outcome<textarea name="expected_{{$j}}" maxlength="2000" rows="2" required>{{$draft.InputValue $i (printf "expected_%d" $j) $t.ExpectedOutcome}}</textarea></label>
+<label class="check"><input type="checkbox" name="must_pass_{{$j}}" value="1" {{if $draft.InputChecked $i (printf "must_pass_%d" $j) $t.MustPass}}checked{{end}}> Must pass</label>
+</fieldset>{{end}}
+<div class="actions"><button name="intent" value="save_behavior">Save behavior</button><button class="secondary" name="intent" value="add_test" formnovalidate>Add test</button></div>
+{{if $b.Tests}}<div class="actions"><label>Test to remove<select name="test_remove">{{range $j, $t := $b.Tests}}<option value="{{$j}}" {{if eq ($draft.InputValue $i "test_remove" "") (printf "%d" $j)}}selected{{end}}>{{$t.ID}}</option>{{end}}</select></label><button class="secondary" name="intent" value="remove_test" formnovalidate>Remove test</button></div>{{end}}
+<button class="secondary" name="intent" value="remove_behavior" formnovalidate>Remove behavior</button>
+</form>
+{{else}}
+<p>{{$b.Text}}</p><p>{{if $b.Required}}Required{{else}}Optional{{end}} · {{$b.Policy.MinPassBasisPoints}} basis points · {{$b.Policy.MaxAgeHours}} hours</p>
+<ul>{{range $b.Tests}}<li>{{.ID}} · {{.ExpectedOutcome}} · {{.PlannedAttempts}} planned{{if .MustPass}} · must pass{{end}}</li>{{end}}</ul>
+{{end}}
+</section>
+{{else}}<p>No behaviors yet. Add a required behavior with a must-pass test.</p>{{end}}
+{{if and .Account.CanContribute (not $draft.ApprovedDigest)}}<div class="actions">
+<form method="post" action="{{projectURL .Project}}/drafts/{{$draft.ID}}">{{template "csrf" .}}<input type="hidden" name="revision" value="{{$draft.Revision}}"><button class="secondary" name="intent" value="add_behavior">Add behavior</button></form>
+{{if .Account.CanReview}}<form method="post" action="{{projectURL .Project}}/drafts/{{$draft.ID}}/approve">{{template "csrf" .}}<input type="hidden" name="revision" value="{{$draft.Revision}}"><button>Approve saved draft</button></form>{{end}}
+</div>
+<details class="panel"><summary>Copy draft</summary><form class="stack narrow" method="post" action="{{projectURL .Project}}/drafts">{{template "csrf" .}}<input type="hidden" name="draft" value="{{$draft.ID}}"><label>New baseline ID<input name="baseline_id" required maxlength="80"></label><button class="secondary">Create copy</button></form></details>
+{{end}}
+{{end}}
+
+{{define "draft_conflict"}}
+{{$conflict := .Data}}{{$input := $conflict.Input}}
+<section class="panel">
+<p>Submitted draft revision {{$conflict.Revision}}</p>
+<p>Copy your edits, then review the latest draft in a new tab before reapplying them.</p>
+<a href="{{projectURL .Project}}/drafts/{{$conflict.DraftID}}" target="_blank" rel="noopener">Review latest draft</a>
+{{if $input.Has "behavior_id"}}
+<h2>Your submitted behavior</h2>
+<dl><dt>Behavior ID</dt><dd>{{$input.Get "behavior_id"}}</dd>
+<dt>Policy ID</dt><dd>{{$input.Get "policy_id"}}</dd>
+<dt>Minimum pass basis points</dt><dd>{{$input.Get "minimum"}}</dd>
+<dt>Maximum age in hours</dt><dd>{{$input.Get "max_age"}}</dd>
+<dt>Required behavior</dt><dd>{{if eq ($input.Get "required") "1"}}Yes{{else}}No{{end}}</dd>
+<dt>Behavior text</dt><dd><pre><span>{{$input.Get "text"}}</span></pre></dd></dl>
+{{range $conflict.Tests}}<h3>Test {{.ID}}</h3>
+<dl><dt>Planned attempts</dt><dd>{{.Attempts}}</dd>
+<dt>Must pass</dt><dd>{{if .MustPass}}Yes{{else}}No{{end}}</dd>
+<dt>Expected outcome</dt><dd><pre><span>{{.Expected}}</span></pre></dd></dl>
+{{end}}
+{{end}}
+</section>
+{{end}}
+
+{{define "new_candidate"}}
+{{$form := .Data}}{{$m := $form.Input.Manifest}}
+{{if not $form.Baselines}}<section class="panel"><h2>? NOT_ASSESSABLE</h2><p>Approve a baseline before you create a candidate.</p><a class="button" href="{{projectURL .Project}}/baselines">Open baselines</a></section>{{else}}
+<form class="panel stack" method="post" action="{{projectURL .Project}}/candidates">{{template "csrf" .}}
+<div class="form-grid">
+<label>Release ID<input name="release" value="{{$m.ReleaseID}}" maxlength="80" required></label>
+<label>Application version<input name="version" value="{{$m.ApplicationVersion}}" required></label>
+<label>Display label<input name="display" value="{{$form.Input.DisplayVersion}}"></label>
+<label>Approved baseline<select name="baseline" required>{{range $form.Baselines}}<option value="{{.Descriptor.Digest}}" {{if eq .Descriptor.Digest $form.Input.BaselineDigest}}selected{{end}}>{{.Baseline.ID}} · revision {{.Baseline.Revision}}</option>{{end}}</select></label>
+</div>
+<label>Build SHA-256<input name="build" value="{{$m.BuildDigest}}" maxlength="64" minlength="64" required></label>
+<div class="form-grid">
+<label>Prompt SHA-256 or not_applicable<input name="prompt" value="{{$m.PromptDigest}}" maxlength="64" required></label>
+<label>Model configuration SHA-256 or not_applicable<input name="model" value="{{$m.ModelConfigDigest}}" maxlength="64" required></label>
+<label>Knowledge SHA-256 or not_applicable<input name="knowledge" value="{{$m.KnowledgeDigest}}" maxlength="64" required></label>
+<label>Immutable environment revision<input name="environment" value="{{$m.EnvironmentID}}" maxlength="80" required></label>
+</div>
+<label>Predecessor<select name="predecessor"><option value="">None selected</option>{{range $form.Candidates}}<option value="{{.ID}}" {{if eq .ID $form.Input.PredecessorID}}selected{{end}}>{{.DisplayVersion}} · {{.ID}}</option>{{end}}</select></label>
+<label>Recorded correction<textarea name="correction" rows="3">{{$form.Input.Correction}}</textarea></label>
+<button>Create candidate</button></form>
+{{end}}
+{{end}}
+
+{{define "badge"}}<span class="status {{.}}"><span aria-hidden="true">{{icon .}}</span> {{.}}</span>{{end}}
+{{define "board"}}
+{{$page := .Data}}{{$c := $page.Candidate}}
+<div class="actions">{{if .Account.CanContribute}}<a class="button" href="{{projectURL .Project}}/candidates/{{$c.ID}}/import">Import results</a>{{end}}<a class="button secondary" href="{{projectURL .Project}}/candidates/{{$c.ID}}/reports">Frozen reports</a>
+{{if .Account.CanContribute}}<a class="button secondary" href="{{projectURL .Project}}/candidates/new?predecessor={{$c.ID}}">Record successor</a>{{end}}</div>
+<section class="assessment" aria-labelledby="assessment-title">
+<h2 id="assessment-title">{{$c.DisplayVersion}}</h2>
+<p>Candidate ID <code>{{$c.ID}}</code></p>
+<p>{{template "badge" $page.Status}}</p>
+<p>Baseline {{$page.Baseline.Baseline.ID}} · revision {{$page.Baseline.Baseline.Revision}} · assessed <time>{{utc $page.AssessedAt}}</time></p>
+{{if not .AutoRefresh}}<p class="notice">Historical display · automatic refresh is paused.</p>{{end}}
+<p>Evidence supports review. Release decisions stay outside the board.</p>
+<div class="facts" aria-label="Required behavior counts"><span>✓ PASS {{index $page.Counts "PASS"}}</span><span>× FAIL {{index $page.Counts "FAIL"}}</span><span>◷ STALE {{index $page.Counts "STALE"}}</span><span>? UNKNOWN {{index $page.Counts "UNKNOWN"}}</span></div>
+</section>
+<details class="panel"><summary>Candidate lineage and descriptors</summary><dl>
+<dt>Manifest</dt><dd><a href="{{projectURL .Project}}/candidates/{{$c.ID}}/manifest"><code>{{$c.ManifestDigest}}</code></a></dd>
+<dt>Approved baseline</dt><dd><a href="{{projectURL .Project}}/baselines/{{$c.BaselineDigest}}"><code>{{$c.BaselineDigest}}</code></a></dd>
+<dt>Predecessor</dt><dd>{{if $c.PredecessorID}}{{if $page.PredecessorGone}}{{$c.PredecessorID}} · purged record{{else}}<a href="{{projectURL .Project}}/candidates/{{$c.PredecessorID}}">{{$c.PredecessorID}}</a>{{end}}{{else}}none{{end}}</dd>
+{{if $c.Correction}}<dt>Correction</dt><dd>{{$c.Correction}}</dd>{{end}}{{if $c.Changes}}<dt>Changed inputs</dt><dd>{{range $c.Changes}}<div>{{.}}</div>{{end}}</dd>{{end}}
+</dl></details>
+<section class="panel"><h2>Behavior roster</h2>
+<form class="actions" method="get"><label>Status<select name="status"><option value="">All statuses</option><option {{if eq $page.State "PASS"}}selected{{end}}>PASS</option><option {{if eq $page.State "FAIL"}}selected{{end}}>FAIL</option><option {{if eq $page.State "STALE"}}selected{{end}}>STALE</option><option {{if eq $page.State "UNKNOWN"}}selected{{end}}>UNKNOWN</option></select></label>
+<label>Reason<select name="reason"><option value="">All reasons</option>{{template "reason_options" $page.Reason}}</select></label>
+{{if not .AutoRefresh}}<input type="hidden" name="refresh" value="off">{{end}}<button class="secondary">Apply filters</button></form>
+<p class="muted"><a href="{{$page.PauseURL}}">{{if .AutoRefresh}}Pause automatic refresh{{else}}Resume automatic refresh{{end}}</a></p>
+{{if $page.Visible}}<ul class="rows">{{range $page.Visible}}
+<li id="behavior-{{.ID}}"><div class="row-title"><a href="{{projectURL $.Project}}/candidates/{{$c.ID}}/behaviors?id={{.ID}}&amp;status={{$page.State}}&amp;reason={{$page.Reason}}{{if not $.AutoRefresh}}&amp;refresh=off{{end}}" class="row-link">{{.ID}} · {{.Text}}</a>{{template "badge" .Status}}</div>
+<p>{{if .Required}}Required{{else}}Optional{{end}} · {{.Passed}} / {{.Planned}} planned attempts passed{{if .CurrentRunID}} · current run {{.CurrentRunID}}{{end}}</p>
+{{if .Reasons}}<p class="muted">{{range .Reasons}}{{.Code}} {{end}}</p>{{end}}</li>
+{{end}}</ul>{{else}}<p>No behaviors match these filters.</p>{{end}}
+</section>
+{{end}}
+{{define "reason_options"}}
+<option {{if eq . "MISSING_RUN"}}selected{{end}}>MISSING_RUN</option><option {{if eq . "MISSING_SLOT"}}selected{{end}}>MISSING_SLOT</option>
+<option {{if eq . "ERROR_RESULT"}}selected{{end}}>ERROR_RESULT</option><option {{if eq . "SKIPPED_RESULT"}}selected{{end}}>SKIPPED_RESULT</option><option {{if eq . "UNKNOWN_RESULT"}}selected{{end}}>UNKNOWN_RESULT</option>
+<option {{if eq . "STALE_CURRENT"}}selected{{end}}>STALE_CURRENT</option><option {{if eq . "MUST_PASS_FAILED"}}selected{{end}}>MUST_PASS_FAILED</option><option {{if eq . "RATE_BELOW_THRESHOLD"}}selected{{end}}>RATE_BELOW_THRESHOLD</option>
+<option {{if eq . "CLOCK_SKEW"}}selected{{end}}>CLOCK_SKEW</option>
+{{end}}
+
+{{define "behavior"}}
+{{$page := .Data}}{{$b := $page.Selected}}
+<p><a href="{{$page.Back}}">Back to evidence board</a></p>
+<section class="panel"><h2>{{$b.Text}}</h2><p>{{template "badge" $b.Status}}</p>
+<p>Candidate {{$page.Assessment.Candidate.DisplayVersion}} · <code>{{$page.Assessment.Candidate.ID}}</code></p>
+<p>Baseline {{$page.Assessment.Baseline.Baseline.ID}} · revision {{$page.Assessment.Baseline.Baseline.Revision}} · assessed <time>{{utc $page.Assessment.AssessedAt}}</time></p>
+{{if not .AutoRefresh}}<p class="notice">Historical display · automatic refresh is paused.</p>{{end}}
+<p class="muted"><a href="{{$page.PauseURL}}">{{if .AutoRefresh}}Pause automatic refresh{{else}}Resume automatic refresh{{end}}</a></p>
+<dl><dt>Manifest</dt><dd><code>{{$page.Assessment.Candidate.ManifestDigest}}</code></dd><dt>Baseline</dt><dd><code>{{$page.Assessment.Candidate.BaselineDigest}}</code></dd></dl>
+<p>Policy {{$b.Policy.ID}} revision {{$b.Policy.Revision}} · {{$b.Policy.MinPassBasisPoints}} basis points · {{$b.Policy.MaxAgeHours}} hours</p>
+<p>Current run <strong>{{if $b.CurrentRunID}}{{$b.CurrentRunID}}{{else}}none{{end}}</strong>{{if $b.CurrentTieIncomplete}} · an incomplete run was selected at a tied finish time{{end}}</p>
+{{if $b.Reasons}}<ul aria-label="Status reasons">{{range $b.Reasons}}<li>{{.Code}}{{if .RunID}} · <a href="#run-{{.RunID}}">{{.RunID}}</a>{{end}}{{if .TestID}} · {{.TestID}} attempt {{.Attempt}}{{end}}</li>{{end}}</ul>{{end}}
+<details><summary>Approved test plan</summary><ul>{{range $b.Tests}}<li>{{.ID}} · {{.ExpectedOutcome}} · {{.PlannedAttempts}} planned · must pass {{.MustPass}}</li>{{end}}</ul></details>
+</section>
+<section class="panel"><h2>Run history</h2>
+{{range $b.Runs}}{{$run := .}}<article class="run" id="run-{{.ID}}"><h3>{{.ID}}{{if eq .ID $b.CurrentRunID}} · Current{{end}}{{if .Definitive}} · Definitive failure{{end}}</h3>
+<p>Producer finish <time>{{utc .Closed}}</time> · ledger sequence {{.Sequence}} · complete {{.Complete}} · pass count {{.Passed}} / {{.Planned}} · best possible {{.BestPossible}} / {{.Planned}}</p>
+{{if .Definitive}}<p>Definitive failure stays with this candidate. A recorded correction needs a successor and fresh matching results.</p>{{end}}
+{{if .Reasons}}<ul>{{range .Reasons}}<li>{{.Code}}{{if .TestID}} · {{.TestID}} attempt {{.Attempt}}{{end}}</li>{{end}}</ul>{{end}}
+<p><a href="{{projectURL $.Project}}/receipts/{{.ReceiptID}}">Original import receipt</a> · <code>{{.FileHash}}</code></p>
+{{range .Rows}}<details id="source-{{$run.Sequence}}-{{.LogicalRow}}"><summary>{{if .ResultID}}{{.ResultID}} · {{.Outcome}}{{else}}RUN_ONLY · No result rows{{end}} · CSV row {{.LogicalRow}}</summary>
+<p>CSV logical row {{.LogicalRow}} · physical line {{.PhysicalLine}} · run finish {{.ClosedAt}}</p>
+{{if .ResultID}}<p>Test {{.TestID}} · attempt {{.Attempt}} · result finish {{.FinishedAt}}</p>{{end}}
+{{if .Excerpt}}<pre>{{.Excerpt}}</pre>{{end}}
+{{if .SourceURI}}<a href="{{.SourceURI}}" rel="noreferrer">Unarchived source link</a>{{end}}</details>{{end}}
+</article>{{else}}<p>No matching run. Import evidence recorded for this candidate and behavior.</p>{{end}}
+</section>
+{{end}}
+
+{{define "intake"}}
+{{$page := .Data}}{{$c := $page.Candidate}}
+<p>{{$c.DisplayVersion}} · candidate ID <code>{{$c.ID}}</code></p>
+<p>Baseline {{$page.Baseline.Baseline.ID}} · revision {{$page.Baseline.Baseline.Revision}}</p>
+<p><a href="{{projectURL .Project}}/candidates/{{$c.ID}}">Back to evidence board</a></p>
+<section class="panel"><h2>Choose producer results</h2>
+<p>Use reb-results/1.3 CSV, up to 10 MiB and 10,000 records. The manifest and baseline digests must be the identities recorded by the producer at execution.</p>
+<form method="post" action="{{projectURL .Project}}/candidates/{{$c.ID}}/preview" enctype="multipart/form-data" class="stack">{{template "csrf" .}}
+<label>Results CSV<input type="file" name="results" accept=".csv,text/csv" required></label><button>Preview CSV</button></form>
+</section>
+{{if $page.Filename}}<section class="panel"><h2>Preview · {{$page.Filename}}</h2>{{$preview := $page.Preview}}
+<p>{{$preview.Rows}} parsed rows · {{$preview.Schema}} · data revision {{$preview.Revision}}</p><p>CSV SHA-256 <code>{{$preview.Hash}}</code></p>
+{{if $preview.Issues}}<div class="table-wrap"><table><caption>Import diagnostics</caption><thead><tr><th scope="col">Row</th><th scope="col">Physical line</th><th scope="col">Column</th><th scope="col">Code</th><th scope="col">Correction</th></tr></thead>
+<tbody>{{range $preview.Issues}}<tr><td>{{.LogicalRow}}</td><td>{{.PhysicalLine}}</td><td>{{.Column}}</td><td>{{.Code}}</td><td>{{.Message}}</td></tr>{{end}}</tbody></table></div>{{end}}
+{{if $preview.Token}}
+{{if $preview.ExistingReceiptID}}<p>These exact bytes already have a receipt. Commit returns that receipt.</p>{{end}}
+{{if $preview.HistoricalCandidates}}<p class="notice">HISTORICAL_MISMATCH. Rows for other known candidate pairs stay with those candidates.</p><ul>{{range $preview.HistoricalCandidates}}<li><a href="{{projectURL $.Project}}/candidates/{{.}}">{{.}}</a></li>{{end}}</ul>{{end}}
+{{if $preview.AddedRuns}}<p>New runs {{range $preview.AddedRuns}}{{.}} {{end}}</p>{{end}}
+{{if $preview.ExistingRuns}}<p>Identical retained runs {{range $preview.ExistingRuns}}{{.}} {{end}}</p>{{end}}
+<details open><summary>Projected evidence status</summary>{{range $preview.Projected}}{{$projection := .}}
+<h3>{{.Candidate.DisplayVersion}} · {{.Status}}</h3>
+<p>Candidate ID <code>{{.Candidate.ID}}</code> · baseline {{.Baseline.Baseline.ID}} revision {{.Baseline.Baseline.Revision}}</p>
+<p>Assessment time <time>{{utc .AssessedAt}}</time> · projected ledger {{.LedgerHighWater}}</p>
+<ul>{{range .Behaviors}}{{$behavior := .}}<li>{{.ID}} · {{.Status}}{{if .CurrentTieIncomplete}} · incomplete run wins a finish-time tie{{end}}
+{{$ordering := index $preview.Ordering $projection.Candidate.ID .ID}}
+<p>Current run change · {{if $ordering.PreviousRunID}}{{$ordering.PreviousRunID}}{{else}}none{{end}} → {{if $ordering.ProjectedRunID}}{{$ordering.ProjectedRunID}}{{else}}none{{end}}{{if eq $ordering.PreviousRunID $ordering.ProjectedRunID}} · unchanged{{end}}</p>
+{{range $ordering.Incoming}}{{$run := .}}<details><summary>{{.ID}}{{if eq .ID $behavior.CurrentRunID}} · Projected current run{{else}} · Historical run{{end}}</summary>
+{{range .Rows}}{{if eq .Kind "RUN_ONLY"}}<p>RUN_ONLY · CSV row {{.LogicalRow}} · zero results</p>{{end}}{{end}}
+{{if .Reasons}}<ul>{{range .Reasons}}<li>{{.Code}}{{if .TestID}} · {{.TestID}} attempt {{.Attempt}}{{end}}</li>{{end}}</ul>{{end}}
+{{if .Definitive}}<p>Definitive failure · best possible {{$run.BestPossible}} / {{$run.Planned}}</p>{{end}}
+</details>{{end}}
+
+{{if .Reasons}}<ul>{{range .Reasons}}<li>{{.Code}} {{.RunID}}{{if .TestID}} · {{.TestID}} attempt {{.Attempt}}{{end}}</li>{{end}}</ul>{{end}}
+</li>{{end}}</ul>{{end}}</details>
+<div class="actions"><form method="post" action="{{projectURL .Project}}/candidates/{{$c.ID}}/commit">{{template "csrf" .}}<input type="hidden" name="preview" value="{{$preview.Token}}"><button>Commit preview</button></form>
+<form method="post" action="{{projectURL .Project}}/candidates/{{$c.ID}}/cancel">{{template "csrf" .}}<input type="hidden" name="preview" value="{{$preview.Token}}"><button class="secondary">Cancel preview</button></form></div>
+{{end}}
+</section>{{end}}
+{{end}}
+
+{{define "receipt"}}
+{{$r := .Data}}<section class="panel"><h2>{{$r.ID}}</h2>
+<dl><dt>Original CSV SHA-256</dt><dd><code>{{$r.Hash}}</code></dd><dt>Imported</dt><dd><time>{{utc $r.ImportedAt}}</time> by {{$r.Uploader}}</dd><dt>Parser version</dt><dd>{{$r.Schema}}</dd><dt>Ledger high-water mark</dt><dd>{{$r.LedgerHighWater}}</dd><dt>Data rows</dt><dd>{{$r.Rows}}</dd></dl>
+<p>{{if $r.AddedRuns}}Added {{range $r.AddedRuns}}{{.}} {{end}}{{else}}No new runs were added.{{end}}</p>
+{{if $r.ExistingRuns}}<p>Identical retained runs {{range $r.ExistingRuns}}{{.}} {{end}}</p>{{end}}
+{{if $r.PreviousReceipts}}<ul>{{range $r.PreviousReceipts}}<li><a href="{{projectURL $.Project}}/receipts/{{.}}">Prior receipt {{.}}</a></li>{{end}}</ul>{{end}}
+<div class="actions"><a class="button secondary" href="{{projectURL .Project}}/receipts/{{$r.ID}}/source">Download original CSV</a><a href="{{projectURL .Project}}/candidates/{{$r.OpenCandidateID}}">Back to evidence board</a></div>
+</section>{{end}}
+
+{{define "reports"}}
+{{$list := .Data}}{{$c := $list.Candidate}}
+<p><a href="{{projectURL .Project}}/candidates/{{$c.ID}}">Back to evidence board</a></p>
+<section class="panel"><h2>{{$c.DisplayVersion}}</h2><p>Candidate ID <code>{{$c.ID}}</code></p>
+<p>Baseline {{$list.Baseline.Baseline.ID}} · revision {{$list.Baseline.Baseline.Revision}}</p><p>Each report preserves the assessment at its recorded UTC time.</p>
+{{if .Account.CanReview}}<form method="post">{{template "csrf" .}}<button>Freeze assessment</button></form>{{end}}
+<ul class="rows">{{range $list.Reports}}<li>
+<div class="row-title"><a href="{{projectURL $.Project}}/reports/{{.ID}}">{{.ID}} · <time>{{utc .AssessedAt}}</time></a>{{template "badge" .Status}}</div>
+<p>HTML SHA-256 <code>{{.SHA256}}</code></p><a href="{{projectURL $.Project}}/reports/{{.ID}}?download=1">Download self-contained HTML</a>
+</li>{{else}}<li>No reports have been frozen.</li>{{end}}</ul>
+</section>{{end}}
+
+{{define "health"}}
+{{$h := .Data}}
+<section class="panel"><h2>Storage and recovery</h2>
+{{if $h.Alert}}<p class="notice" role="alert">{{$h.Alert}}</p>{{end}}
+{{if $h.Hold}}<p class="notice">Assessment and report creation paused pending integrity verification and reviewer revalidation.</p>{{end}}
+<dl><dt>Database</dt><dd>{{if $h.DatabaseOK}}Available{{else}}Unavailable{{end}}</dd><dt>Last check</dt><dd>{{optionalUTC $h.CheckedAt}}</dd>
+<dt>Consecutive health failures</dt><dd>{{$h.ConsecutiveFailures}}</dd><dt>Last successful backup</dt><dd>{{optionalUTC $h.LastBackup}}</dd>
+<dt>Last restore</dt><dd>{{optionalUTC $h.LastRestore}}</dd><dt>Last restore drill</dt><dd>{{optionalUTC $h.LastDrill}}</dd><dt>Import rejections</dt><dd>{{$h.ImportRejections}}</dd>
+<dt>Failed snapshots</dt><dd>{{$h.ReportFailures}}</dd><dt>Optional AI</dt><dd>Disabled · no provider configured</dd></dl>
+{{if and .Account.CanReview $h.Hold}}<form method="post" action="{{projectURL .Project}}/health/revalidate">{{template "csrf" .}}<button>Verify and revalidate</button></form>{{end}}
+</section>
+{{with $h.HistoricalAI}}
+<section class="panel">
+<h2>Retained AI reviews</h2>
+<p>Synthetic snapshot accounting for this store. AI remains off.</p>
+<dl><dt>Requests today (UTC)</dt><dd>{{.RequestsToday}}</dd>
+<dt>Recorded billed amount today (micro-USD)</dt><dd>{{.BilledToday}}</dd>
+<dt>Unresolved reservations (micro-USD)</dt><dd>{{.Held}}</dd>
+<dt>Remaining today (micro-USD)</dt><dd>{{.Remaining}}</dd>
+<dt>Budget state</dt><dd>{{if .Exhausted}}Budget exhausted{{else}}Budget available{{end}}</dd></dl>
+{{range .Requests}}
+<details><summary>{{.ID}} · {{.CandidateID}}</summary>
+<dl><dt>Requested at</dt><dd>{{.RequestedAt}}</dd><dt>Disabled after review at</dt><dd>{{.DisabledAt}}</dd>
+<dt>Payload SHA-256</dt><dd><code>{{.PayloadSHA256}}</code></dd><dt>Response SHA-256</dt><dd><code>{{.ResponseSHA256}}</code></dd></dl>
+{{with .Reviews}}<ul>{{range .}}<li>{{.SuggestionID}} · {{.Disposition}} · {{.Actor}} · {{.At}}</li>{{end}}</ul>{{end}}
+</details>
+{{end}}
+</section>
+{{end}}
+{{end}}

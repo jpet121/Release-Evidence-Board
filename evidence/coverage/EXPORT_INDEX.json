@@ -1,0 +1,87 @@
+{
+  "scope": "Curated public measurements. No private history, profile, owner chat, native command logs or original machine paths. Original evidence stays local.",
+  "derived_artifacts": [
+    {
+      "public_path": "evidence/coverage/windows-amd64.json",
+      "original_sha256": "c0c627abbee40a9a1bff17bc08c10de5f492e057efffd8aa1007a4525f1bb474",
+      "public_sha256": "88401fb8af21f390cb6a47ba1ab9b853101f5d11a6dd5fd4b27e098a40f818fe",
+      "transformation": "Retain version, target, source sites/hits and test_exit; omit browser/workstation receipt fields. This is a derived public copy."
+    },
+    {
+      "public_path": "evidence/coverage/windows-amd64.json",
+      "original_sha256": "1fbf34fa8420a2c48366dc457b28fd115a549cd597909c3c6fcc7bb5eedd9790",
+      "public_sha256": "88401fb8af21f390cb6a47ba1ab9b853101f5d11a6dd5fd4b27e098a40f818fe",
+      "transformation": "Retain version, target, source sites/hits and test_exit; omit browser/workstation receipt fields. This is a derived public copy."
+    },
+    {
+      "public_path": "evidence/coverage/linux-amd64.json",
+      "original_sha256": "a86be4c40560861ec5e181ad9658a8c4001c14af07b67d3dbec5e24f465794ea",
+      "public_sha256": "b7dbfaf39ae935ea0f7a2023dc631e31a5a230e9223fc5024da30fbf5a94eb30",
+      "transformation": "Retain version, target, source sites/hits and test_exit; omit browser/workstation receipt fields. This is a derived public copy."
+    },
+    {
+      "public_path": "evidence/coverage/linux-amd64.json",
+      "original_sha256": "c653d3b85ac8edd31463dc7660434c83f0e89248de47f01eda63128a9c7d9889",
+      "public_sha256": "b7dbfaf39ae935ea0f7a2023dc631e31a5a230e9223fc5024da30fbf5a94eb30",
+      "transformation": "Retain version, target, source sites/hits and test_exit; omit browser/workstation receipt fields. This is a derived public copy."
+    }
+  ],
+  "measurement_source_files": [
+    {
+      "public_path": "evidence/coverage/methods/covercheck.go",
+      "sha256": "35f0912ae030bdb0bb0a8a69296edd3a9635b1622e0b35d68bd74d8abc2ff0da",
+      "original_sha256": "35f0912ae030bdb0bb0a8a69296edd3a9635b1622e0b35d68bd74d8abc2ff0da"
+    },
+    {
+      "public_path": "evidence/coverage/methods/covercheck_grouped_test.go",
+      "sha256": "a77a90d30196df96e45c4b0849476a627bfa32748749ae043381cdce9e53c6bd",
+      "original_sha256": "a77a90d30196df96e45c4b0849476a627bfa32748749ae043381cdce9e53c6bd"
+    },
+    {
+      "public_path": "evidence/coverage/methods/templatecheck.go",
+      "sha256": "359df985d6a77f1612ef6f4355ca4e8366cff40f7e6e5543fa6f3d5fd56bf05f",
+      "original_sha256": "359df985d6a77f1612ef6f4355ca4e8366cff40f7e6e5543fa6f3d5fd56bf05f"
+    },
+    {
+      "public_path": "evidence/coverage/methods/css_coverage.py",
+      "sha256": "8ea90df701db67ebf63a6fccd5f5f15bb4fda86ef14263dac229b5fb3f6e662c",
+      "original_sha256": "8ea90df701db67ebf63a6fccd5f5f15bb4fda86ef14263dac229b5fb3f6e662c"
+    },
+    {
+      "public_path": "evidence/coverage/methods/css_coverage_test.py",
+      "sha256": "7f891f4a0b02396a64e5c140fc2b439aa5d92708149c9c5683aaa06e4bcb5c41",
+      "original_sha256": "7f891f4a0b02396a64e5c140fc2b439aa5d92708149c9c5683aaa06e4bcb5c41"
+    },
+    {
+      "public_path": "evidence/coverage/methods/css_observer.js",
+      "sha256": "17a0d1e7d325bc10517e681da22dc7ab41b5a76a74d3b5565793921efd1568ba",
+      "original_sha256": "17a0d1e7d325bc10517e681da22dc7ab41b5a76a74d3b5565793921efd1568ba"
+    },
+    {
+      "public_path": "evidence/coverage/methods/css_native_probe.py",
+      "sha256": "2d0f25516914685ff34d7f30bfa7ea4df7d5e78dd63adcbab6edbe9054bce674",
+      "original_sha256": "2d0f25516914685ff34d7f30bfa7ea4df7d5e78dd63adcbab6edbe9054bce674"
+    },
+    {
+      "public_path": "evidence/coverage/methods/coverage-applicability.mjs",
+      "sha256": "4284db53721ce78b40b8924726258f1661e0391aaad929ee9257802992c79d62",
+      "original_sha256": "4284db53721ce78b40b8924726258f1661e0391aaad929ee9257802992c79d62"
+    },
+    {
+      "public_path": "evidence/coverage/methods/template-range-contract.mjs",
+      "sha256": "7670797124d7cf9b91223681acc09afe89fd551d4cbe43c2597ca7a599fa8c13",
+      "original_sha256": "7670797124d7cf9b91223681acc09afe89fd551d4cbe43c2597ca7a599fa8c13"
+    },
+    {
+      "public_path": "evidence/coverage/methods/css-scope.mjs",
+      "sha256": "ffd048f264f11321b5e791daa739ab08d491496a425e65a95ed3bd22ae699b9c",
+      "original_sha256": "ffd048f264f11321b5e791daa739ab08d491496a425e65a95ed3bd22ae699b9c"
+    },
+    {
+      "public_path": "evidence/coverage/methods/go.mod",
+      "sha256": "cf16292fcd8a69560bff770bf61ce1d5e4ef66ae4557bcd91b1044f5e7809e8b",
+      "original_sha256": "cf16292fcd8a69560bff770bf61ce1d5e4ef66ae4557bcd91b1044f5e7809e8b"
+    }
+  ],
+  "exclusions": 0
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+<rect width="1280" height="640" fill="#18162a"/>
+<path d="M950 0H1280V640H850Z" fill="#28233f"/>
+<rect x="72" y="72" width="56" height="56" rx="16" fill="#b0a3d4"/>
+<path d="m86 100 10 10 19-22" fill="none" stroke="#18162a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="72" y="225" font-family="Segoe UI,Arial,sans-serif" font-weight="700" font-size="66" fill="#ffffff">Release Evidence Board</text>
+<text x="76" y="300" font-family="Segoe UI,Arial,sans-serif" font-size="34" fill="#e4def2">Check test evidence. Keep the record.</text>
+<g fill="#e4def2" font-family="Segoe UI,Arial,sans-serif" font-size="25">
+<text x="76" y="411">Approved baselines</text><text x="76" y="460">Atomic CSV imports</text><text x="76" y="509">Offline HTML reports</text></g>
+<text x="76" y="585" font-family="Segoe UI,Arial,sans-serif" font-size="20" fill="#b0a3d4">Local Go application · Windows + Linux · M1 candidate</text>
+<g transform="translate(965 375)"><rect width="230" height="150" rx="18" fill="#eae3f5"/><path d="m35 65 22 22 36-42" stroke="#504979" fill="none" stroke-width="9" stroke-linecap="round"/><path d="M120 50H190M120 80H180M35 115H190" stroke="#504979" stroke-width="9" stroke-linecap="round"/></g></svg>

@@ -1,0 +1,11 @@
+/bin/
+/data/
+*.db
+*.db.lock
+*.test
+*.exe
+.env
+.env.*
+*PASSWORD*
+*CREDENTIALS*
+/evidence-board

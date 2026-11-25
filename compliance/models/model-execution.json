@@ -1,0 +1,855 @@
+{
+  "schema": "reb-independent-model-execution/1",
+  "recordedUTC": "2026-11-20T00:34:04.113550+00:00",
+  "scope": "Pinned Lean model-to-literal verification using the exact checked executable. Public Board comparisons are a separate native command.",
+  "leanVersion": "Lean (version 4.19.0, x86_64-w64-windows-gnu, commit 6caaee842e94, Release)",
+  "leanExecutableSha256": "f59b0c515f65dbf96526279d77fb43152f76bdd77f5fb94f387b75139fafe68c",
+  "checkedAndExecutedSourceSha256": "533c39aefd0997b04abe8c60dbd5690a19ac700b628223b7ebf30eb4ac3ce6e8",
+  "vectorTableSha256": "06f416e7485df6aa450e98f64ec5a65faac6177208862d0c49999db266685877",
+  "exitCode": 0,
+  "stderr": "",
+  "command": "lean --run compliance/models/IndependentOracle.lean <one materialized JSON input per literal vector>",
+  "axiomAudit": [
+    "'ReleaseEvidenceOracle.prefer_incomplete_at_tie' depends on axioms: [propext, Quot.sound]",
+    "'ReleaseEvidenceOracle.current_incomplete_for_both_orders' depends on axioms: [propext, Quot.sound]",
+    "'ReleaseEvidenceOracle.sufficient_iff_required_pass' depends on axioms: [propext, Quot.sound]",
+    "'ReleaseEvidenceOracle.definitive_failure_blocks' depends on axioms: [propext, Quot.sound]",
+    "'ReleaseEvidenceOracle.no_rate_failure_at_equal_bound' depends on axioms: [propext]",
+    "'ReleaseEvidenceOracle.exact_age_boundary_is_fresh' depends on axioms: [propext, Quot.sound]",
+    "'ReleaseEvidenceOracle.decision_kernel_refinement' depends on axioms: [propext, Quot.sound]",
+    "'ReleaseEvidenceOracle.executable_has_decision_contract' depends on axioms: [propext, Quot.sound]"
+  ],
+  "vectorCount": 35,
+  "executedVectors": 35,
+  "result": "PASS",
+  "checks": [
+    {
+      "id": "IOR-004:assessment",
+      "issuedInputSha256": "91f736e29a280fe44905832acc723569c73aa42c46afa0ea60c58b7b5ae8cd74",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 2,
+            "passes": 0,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "incomplete",
+            "currentAgeUs": null,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-005:assessment",
+      "issuedInputSha256": "8b7d45ce93a5e04c519a1b27608ee3da359ef83a058ad97e014d463e7b81e75f",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 2,
+            "passes": 0,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 2,
+            "currentRun": "incomplete",
+            "currentAgeUs": null,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-006:assessment",
+      "issuedInputSha256": "dce58c2b9655c2d8531f36c43dc0ab1c651739c4a03abfad161e1abdddd7e593",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 2,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "incomplete",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-007:assessment",
+      "issuedInputSha256": "f2ddb7277d79a166830676ea003b862a6514550caa136e8ddee94bbb6caf2632",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 2,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 2,
+            "currentRun": "incomplete",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-008:assessment",
+      "issuedInputSha256": "c4cf8b247b2c25b5c5d36cd23780c5164a2859be8d65a6ec3500f19ee64f8cfd",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 2,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "incomplete",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-009:assessment",
+      "issuedInputSha256": "9b8248ec54d38a6340da817d5c97f54851ccc443eba6f0814b146c88280d2f3b",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 2,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 2,
+            "currentRun": "incomplete",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-010:assessment",
+      "issuedInputSha256": "4db5fd8f66b96e766d62d908a2c7a2717ab3531bf8eec3cce3f4afe3863668db",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 2,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "incomplete",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-011:assessment",
+      "issuedInputSha256": "e8e911218d67eb2b80137d74b704bd41a7418fa3ceaeb9087dea397a1aa7bd0c",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 2,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 2,
+            "currentRun": "incomplete",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-012:assessment",
+      "issuedInputSha256": "1310cb1cefa22fffc25e29368ed13861d31ab789e3ad9f41f2890b189cb055da",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 2,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "incomplete",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-013:assessment",
+      "issuedInputSha256": "b7ec0918ab829e6c8183a44143af3b7efbe699326a6c9446ddd23786de20b06b",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 2,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 2,
+            "currentRun": "incomplete",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-014:assessment",
+      "issuedInputSha256": "de94d397d2a1afa6b5f4c2b2563800e28644b77021a91b1b53758bdd7575665c",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 2,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "later-close",
+            "currentAgeUs": 10500000000,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-015:assessment",
+      "issuedInputSha256": "4a9c700db95b608d7bc32d79f1ebb65077a0bbd0bf1e646180d271ebe4e04642",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 2,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "b",
+            "currentAgeUs": 1800000000,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-016:before-rerun",
+      "issuedInputSha256": "3f0352ac8fa5626ed15f8ffa9083b8fa742a5a1e773cccf1e59273654e56a545",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "FAIL",
+            "planned": 10,
+            "passes": 5,
+            "id": "BEH1",
+            "definitiveRuns": [
+              "partial"
+            ],
+            "currentSequence": 1,
+            "currentRun": "partial",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-016:after-rerun",
+      "issuedInputSha256": "3e137df65d99198fe24842e3a3f177f314c31756ab52045af776f2a58ddc5060",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "FAIL",
+            "planned": 10,
+            "passes": 10,
+            "id": "BEH1",
+            "definitiveRuns": [
+              "partial"
+            ],
+            "currentSequence": 2,
+            "currentRun": "full",
+            "currentAgeUs": 1800000000,
+            "completeExpiryUs": 1795001400000000
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-017:before-rerun",
+      "issuedInputSha256": "7344e039b96ad02733ebd2fce8f888b1d09efdd105de866a595f591ed6f79069",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 10,
+            "passes": 5,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "partial",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-018:before-rerun",
+      "issuedInputSha256": "dffb18157d12f3bd4b00af2a90543436ccaa22ce841afbc884f8dd49e0e83824",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 10,
+            "passes": 5,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "partial",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-019:assessment",
+      "issuedInputSha256": "8ddae97ac7c3bfa8308bd2c28948738d1763ad289297f007d40e353392e2d35e",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "status": "PASS",
+            "planned": 10,
+            "passes": 9,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "weighted",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": 1794999600000000
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-020:assessment",
+      "issuedInputSha256": "158ba8dac66109b5c4693f027ec6e8934e8b169c5671ee85f4976f3700a00d81",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "FAIL",
+            "planned": 10,
+            "passes": 9,
+            "id": "BEH1",
+            "definitiveRuns": [
+              "weighted"
+            ],
+            "currentSequence": 1,
+            "currentRun": "weighted",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": 1794999600000000
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-021:assessment",
+      "issuedInputSha256": "b3126e819c06d75f642f40b233311f7d4f52237bedb5f1778f2abe62a7d50ce4",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "FAIL",
+            "planned": 10,
+            "passes": 9,
+            "id": "BEH1",
+            "definitiveRuns": [
+              "weighted"
+            ],
+            "currentSequence": 1,
+            "currentRun": "weighted",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": 1794999600000000
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-022:assessment",
+      "issuedInputSha256": "ded9ef767454ab56a00dccf7f49ffde544259b8a79dd556d085b31e324defe03",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "status": "PASS",
+            "planned": 1,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "future",
+            "currentAgeUs": 0,
+            "completeExpiryUs": 1795003500000000
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-023:assessment",
+      "issuedInputSha256": "a947d1e3a3164c3b2e3de5232108065bf3010aa1b15fff47b180fde06053109d",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "status": "PASS",
+            "planned": 1,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "future",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": 1794999600000000
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-026:exact-limit",
+      "issuedInputSha256": "40986968464b49a8422e04c5ae9e1f2c69d3f0783172d7f2493cdb992f803d83",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "status": "PASS",
+            "planned": 2,
+            "passes": 2,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "two",
+            "currentAgeUs": 86400000000,
+            "completeExpiryUs": 1794999600000000
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-026:after-limit",
+      "issuedInputSha256": "2be49138eb3cb9fdbe526f8bdcfa6847882d13dc7eb61e4ad0b2a54d813b8bcd",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "STALE",
+            "planned": 2,
+            "passes": 2,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "two",
+            "currentAgeUs": 86400000001,
+            "completeExpiryUs": 1794999600000000
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-027:persistent",
+      "issuedInputSha256": "64c17496ac53d5ba8d63c3f29772f51fa3a3fe65c86635fcb84c0bfd04b75e40",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "FAIL",
+            "planned": 1,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [
+              "failed"
+            ],
+            "currentSequence": 2,
+            "currentRun": "passing",
+            "currentAgeUs": 88200000000,
+            "completeExpiryUs": 1795001400000000
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-030:successor-empty",
+      "issuedInputSha256": "4adfc497f6e7f6c6353bcd4625f43c43d92e4aef7e639bd235b094f06c03bc48",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 1,
+            "passes": 0,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": null,
+            "currentRun": null,
+            "currentAgeUs": null,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-033:frozen",
+      "issuedInputSha256": "4a73a330f488fc9b4b074b6de43aa4a79ab22ebc206ebf41e21e33d23b000878",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "status": "PASS",
+            "planned": 1,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "RUN1",
+            "currentAgeUs": 0,
+            "completeExpiryUs": 1795003200000000
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-034:frozen",
+      "issuedInputSha256": "b2e7f296197cb2cc60ec9dc2556164919bb09065975fb0966e86c534dd6faf2a",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 1,
+            "passes": 0,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 2,
+            "currentRun": "RUN2",
+            "currentAgeUs": null,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-035:frozen",
+      "issuedInputSha256": "b6f92c96aba4d05f9f2a943729fd3855ae0d4f7c0af02c5cb49dd17f03c1a71c",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 1,
+            "passes": 0,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "RUN2",
+            "currentAgeUs": null,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-036:frozen",
+      "issuedInputSha256": "c98e56033d8cb0b83bae01e0b359d0f5a3f1c1b10388f377e4d0022a6ae46cc2",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "FAIL",
+            "planned": 1,
+            "passes": 1,
+            "id": "B-FAIL",
+            "definitiveRuns": [
+              "02-must-fail"
+            ],
+            "currentSequence": 5,
+            "currentRun": "05-later-pass",
+            "currentAgeUs": 1800000000,
+            "completeExpiryUs": 1795001400000000
+          },
+          {
+            "status": "PASS",
+            "planned": 1,
+            "passes": 1,
+            "id": "B-PASS",
+            "definitiveRuns": [],
+            "currentSequence": 3,
+            "currentRun": "03-current-pass",
+            "currentAgeUs": 1800000000,
+            "completeExpiryUs": 1795001400000000
+          },
+          {
+            "status": "STALE",
+            "planned": 1,
+            "passes": 1,
+            "id": "B-STALE",
+            "definitiveRuns": [],
+            "currentSequence": 4,
+            "currentRun": "04-old-pass",
+            "currentAgeUs": 7200000000,
+            "completeExpiryUs": 1794913200000000
+          },
+          {
+            "status": "UNKNOWN",
+            "planned": 1,
+            "passes": 0,
+            "id": "B-TIE",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "01-tie-empty",
+            "currentAgeUs": null,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-042:optional-fail",
+      "issuedInputSha256": "edb64a49cce5701083bde8cee9d3f0aa019b48b44e009ac4aaf6e2daed0da1b9",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "status": "PASS",
+            "planned": 1,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "a-required",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": 1794999600000000
+          },
+          {
+            "status": "FAIL",
+            "planned": 1,
+            "passes": 0,
+            "id": "OPTIONAL",
+            "definitiveRuns": [
+              "b-optional"
+            ],
+            "currentSequence": 2,
+            "currentRun": "b-optional",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": 1794999600000000
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-043:year-one-oldest",
+      "issuedInputSha256": "65d54ca440656813af0e911f12c31fb4f57872f01019d0dc7e3595298447cbe1",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "STALE",
+            "planned": 2,
+            "passes": 2,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "completeYearOne",
+            "currentAgeUs": 63930513600000000,
+            "completeExpiryUs": -62135593200000000
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-044:year-one-exact-limit",
+      "issuedInputSha256": "c4fd5c5e7eacf8b61ad40132eba1c8b6765d17cb01f3150cbb508d6ef8b1e313",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "status": "PASS",
+            "planned": 1,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "yearOne",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": -62135593200000000
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-044:year-one-after-limit",
+      "issuedInputSha256": "55844cbd0efec2784fe0dddd9ea98eee61918e9aaf2e286107977cb14ced2b69",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "STALE",
+            "planned": 1,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "yearOne",
+            "currentAgeUs": 3600000001,
+            "completeExpiryUs": -62135593200000000
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-045:year-one-run-only",
+      "issuedInputSha256": "37ee5b616ff83cd6d0ff0432578cca288f93360cdf9459892a523ccbd9d53ffc",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "status": "UNKNOWN",
+            "planned": 1,
+            "passes": 0,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "yearOneEmpty",
+            "currentAgeUs": null,
+            "completeExpiryUs": null
+          }
+        ]
+      },
+      "disagreement": []
+    },
+    {
+      "id": "IOR-051:valid-zero-expiry",
+      "issuedInputSha256": "dbc88fabbb15742e9977e5821bd8f56526c0b7bb8a22f398a8536c54ca594a8e",
+      "result": "PASS",
+      "actual": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "status": "PASS",
+            "planned": 1,
+            "passes": 1,
+            "id": "BEH1",
+            "definitiveRuns": [],
+            "currentSequence": 1,
+            "currentRun": "validYearZero",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": -62135596800000000
+          }
+        ]
+      },
+      "disagreement": []
+    }
+  ]
+}

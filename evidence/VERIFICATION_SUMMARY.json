@@ -1,0 +1,38 @@
+{
+  "scope": "Publication summary derived from retained original evidence, not a fresh execution or complete audit envelope",
+  "application_revision": "32ba36c783c46726a25b40b4bec8cf7267178af4",
+  "coverage_metadata_revision": "00e53731938780ae4faaf3870bc4e5ef53ea08fe",
+  "go_template_per_target": {
+    "lines": [
+      4139,
+      4139
+    ],
+    "branches": [
+      3974,
+      3974
+    ]
+  },
+  "css_per_recorded_client": {
+    "lines": [
+      74,
+      74
+    ],
+    "outcomes": [
+      6,
+      6
+    ]
+  },
+  "exclusions": 0,
+  "clean_extracted_windows_workflow_checkpoints": 28,
+  "later_windows_startup_assertions": 7,
+  "targeted_semantic_mutants_detected_per_target": 9,
+  "full_mutation": "PAUSED_DEFERRED_BY_OWNER_EXCEPTION",
+  "formal_acceptance": "BLOCKED_MISSING_REQUIRED_OBSERVATIONS",
+  "missing": [
+    "manual accessibility",
+    "Safari/VoiceOver",
+    "qualified reference-host capacity/recovery"
+  ],
+  "historical_workflow": "Original FAIL/UNVERIFIED findings retained locally; owner-approved M1 exception",
+  "original_validator_bundle_equivalence": "UNVERIFIED; tested local validators accepted for M1"
+}

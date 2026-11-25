@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>{{.ID}} · Historical assessment · {{.Status}}</title>
+<style>
+body{margin:0;background:#faf9fb;color:#26252b;font:1rem/1.52 system-ui}
+main{max-width:72rem;margin:auto;padding:clamp(1rem,4vw,3rem)}
+h1,h2,h3,p,dl{margin-block:.5em 1em} header,section,article{padding:1.2rem;margin-block:1rem;background:white;border:1px solid #dfdde3;border-radius:1rem}
+header{background:#eae3f5}a{color:#504979;text-underline-offset:3px}a:focus-visible,summary:focus-visible{outline:3px solid #504979;outline-offset:3px}
+dt{font-weight:700}dd{margin:0 0 .6rem;overflow-wrap:anywhere}pre,code{white-space:pre-wrap;overflow-wrap:anywhere}
+li{margin-bottom:.35rem}.records{list-style:none;padding:0}.row{border-left:3px solid #b0a3d4;padding:.5rem .75rem;margin:.75rem 0}
+.facts{display:flex;gap:1rem;flex-wrap:wrap}.facts span{padding:.25rem .6rem;background:#fff;border-radius:.5rem}
+@media print{main{padding:0}section,article,header{border:1px solid #999;break-inside:avoid}}
+</style>
+</head>
+<body>
+<main id="main">
+<header>
+<p>Release Evidence Board · {{.ID}}</p>
+<h1>Historical assessment · {{.Status}}</h1>
+<p>Candidate {{.Assessment.Candidate.DisplayVersion}} · {{.Assessment.Candidate.ID}}</p>
+<p><strong>Assessed at</strong> <time>{{utc .AssessedAt}}</time> · <strong>Earliest current complete-run expiry</strong> <time>{{if .HasExpiry}}{{utc .EarliestExpiry}}{{else}}none{{end}}</time></p>
+<p>Frozen by {{.Creator}} · Rule {{.Rule}} · Ledger high-water mark {{.LedgerHighWater}}</p>
+<p>No deployment authority. Use this report as evidence of the assessment at its recorded time.</p>
+<div class="facts" aria-label="Required behavior counts"><span>✓ PASS {{index .Assessment.Counts "PASS"}}</span><span>× FAIL {{index .Assessment.Counts "FAIL"}}</span><span>◷ STALE {{index .Assessment.Counts "STALE"}}</span><span>? UNKNOWN {{index .Assessment.Counts "UNKNOWN"}}</span></div>
+</header>
+<section aria-labelledby="identity">
+<h2 id="identity">Candidate and approved contract</h2>
+<dl>
+<dt>Manifest SHA-256</dt><dd><code>{{.Assessment.Candidate.ManifestDigest}}</code></dd>
+<dt>Baseline SHA-256</dt><dd><code>{{.Assessment.Candidate.BaselineDigest}}</code></dd>
+<dt>Baseline</dt><dd>{{.Assessment.Baseline.Baseline.ID}} · revision {{.Assessment.Baseline.Baseline.Revision}} · approved by {{.Assessment.Baseline.Approver}} at {{utc .Assessment.Baseline.ApprovedAt}}</dd>
+<dt>Predecessor</dt><dd>{{if .Assessment.Candidate.PredecessorID}}{{.Assessment.Candidate.PredecessorID}}{{if .Assessment.PredecessorGone}} (purged record){{end}}{{else}}none{{end}}</dd>
+{{if .Assessment.Candidate.Correction}}<dt>Recorded correction</dt><dd>{{.Assessment.Candidate.Correction}}</dd>{{end}}
+{{if .Assessment.Candidate.Changes}}<dt>Changed inputs</dt><dd>{{range .Assessment.Candidate.Changes}}<div>{{.}}</div>{{end}}</dd>{{end}}
+<dt>Evidence SHA-256</dt><dd><code>{{.EvidenceDigest}}</code></dd>
+</dl>
+{{with .Assessment.Baseline.Thresholds}}
+<h3>Independent threshold approvals</h3>
+<ul>{{range .}}<li>Candidate {{.CandidateID}} · {{.BehaviorID}} · {{.Before}} to {{.After}} basis points · changed by {{range .ReducingActors}}<strong>{{.}}</strong> {{end}} · approved by {{$.Assessment.Baseline.Approver}} at {{utc $.Assessment.Baseline.ApprovedAt}}</li>{{end}}</ul>
+{{end}}
+<details><summary>Canonical manifest descriptor</summary><pre id="manifest-descriptor">{{.Assessment.Manifest.Descriptor.Text}}</pre></details>
+<details><summary>Canonical baseline descriptor</summary><pre id="baseline-descriptor">{{.Assessment.Baseline.Descriptor.Text}}</pre></details>
+</section>
+<section aria-labelledby="behaviors">
+<h2 id="behaviors">Behavior assessments</h2>
+<ul>{{range .Assessment.Behaviors}}<li><a href="#behavior-{{.ID}}">{{.ID}} · {{.Status}}</a></li>{{end}}</ul>
+{{range .Assessment.Behaviors}}
+{{$behavior := .}}
+<article id="behavior-{{.ID}}">
+<h3>{{.ID}} · {{.Status}}</h3>
+<p>{{.Text}}</p>
+<p>{{if .Required}}Required{{else}}Optional{{end}} · behavior revision {{.Revision}} · policy {{.Policy.ID}} revision {{.Policy.Revision}}</p>
+<p>Pass mark {{.Policy.MinPassBasisPoints}} basis points · maximum age {{.Policy.MaxAgeHours}} hours · current pass count {{.Passed}} of {{.Planned}} planned</p>
+<p>Current run <strong>{{if .CurrentRunID}}{{.CurrentRunID}}{{else}}none{{end}}</strong>{{if .CurrentTieIncomplete}} · incomplete run selected at a tied finish time{{end}}</p>
+<details><summary>Approved test plan</summary><ul>{{range .Tests}}<li>{{.ID}} · {{.ExpectedOutcome}} · {{.PlannedAttempts}} attempts · must-pass {{.MustPass}}</li>{{end}}</ul></details>
+{{if .Reasons}}<ul aria-label="Assessment reasons">{{range .Reasons}}<li>{{.Code}}{{if .RunID}} · <a href="#runid-{{.RunID}}">{{.RunID}}</a>{{end}}{{if .TestID}} · {{.TestID}} attempt {{.Attempt}}{{end}}</li>{{end}}</ul>{{end}}
+{{range .Runs}}
+{{$run := .}}
+<section id="runid-{{.ID}}">
+<h4 id="run-{{.Sequence}}">{{.ID}} · ledger sequence {{.Sequence}}</h4>
+<p>Producer finish <time>{{utc .Closed}}</time> · imported <time>{{utc .ImportedAt}}</time> · complete {{.Complete}} · definitive failure {{.Definitive}}</p>
+<p>Passed {{.Passed}} · failed {{.Failed}} · best possible {{.BestPossible}} of {{.Planned}} · pass mark {{$behavior.Policy.MinPassBasisPoints}} basis points</p>
+<p>Original CSV SHA-256 <code>{{.FileHash}}</code> · Receipt {{.ReceiptID}}</p>
+{{if .Reasons}}<ul>{{range .Reasons}}<li>{{.Code}}{{if .TestID}} · {{.TestID}} attempt {{.Attempt}}{{end}}</li>{{end}}</ul>{{end}}
+<ul aria-label="Source row index">{{range .Rows}}<li><a href="#row-{{$run.Sequence}}-{{.LogicalRow}}">{{if .ResultID}}{{.ResultID}} · {{.Outcome}}{{else}}RUN_ONLY · No result rows{{end}} · CSV row {{.LogicalRow}}</a></li>{{end}}</ul>
+<ol class="records">{{range .Rows}}
+<li class="row" id="row-{{$run.Sequence}}-{{.LogicalRow}}">
+<strong>{{if .ResultID}}{{.ResultID}} · {{.Outcome}}{{else}}RUN_ONLY · No result rows{{end}}</strong>
+<p>Run {{$run.ID}} · sequence {{$run.Sequence}} · CSV logical row {{.LogicalRow}} · physical line {{.PhysicalLine}} · reported run finish {{.ClosedAt}}</p>
+{{if .ResultID}}<p>Test {{.TestID}} · attempt {{.Attempt}} · result finish {{.FinishedAt}} · outcome {{.Outcome}}</p>{{end}}
+{{if .Excerpt}}<pre>{{.Excerpt}}</pre>{{end}}
+{{if .SourceURI}}<p><a rel="noreferrer" href="{{.SourceURI}}">Unarchived source link</a></p>{{end}}
+</li>
+{{end}}</ol>
+</section>
+{{end}}
+</article>
+{{end}}
+</section>
+<section aria-labelledby="reproduce">
+<h2 id="reproduce">Reproduce the status offline</h2>
+<ol>
+<li>For each behavior, use its approved test IDs and planned attempts as the roster. Each planned slot counts once. A run is incomplete if any slot is missing or has ERROR, SKIPPED or UNKNOWN. RUN_ONLY leaves every slot missing.</li>
+<li>Each run can reach at most planned slots minus FAIL slots. A failed must-pass slot or a maximum possible score below the pass mark makes that run definitive. Compare the maximum possible count times 10,000 with the threshold in basis points times the planned count.</li>
+<li>Choose the latest producer run finish. Among equal instants select an incomplete run if present, then use the higher ledger sequence among equally complete runs.</li>
+<li>Any definitive failure for this behavior yields FAIL. Otherwise a missing or incomplete current run yields UNKNOWN. A complete current run is STALE only after its oldest result plus the allowed hours. Otherwise it is PASS. Use the recorded assessment time.</li>
+<li>Every required behavior must be PASS for SUFFICIENT. Optional behaviors retain their own statuses outside the required denominator.</li>
+</ol>
+<details><summary>Exact canonical evidence used for the digest</summary><pre id="evidence-descriptor">{{.Evidence}}</pre></details>
+</section>
+</main>
+</body>
+</html>

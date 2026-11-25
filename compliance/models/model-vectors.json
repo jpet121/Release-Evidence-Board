@@ -1,0 +1,2666 @@
+{
+  "schema": "reb-independent-model-vectors/1",
+  "fixtureSourceSha256": "1d635ba0bd9297c2789784348a643f4b5ff53831df372327064b4fa857bca959",
+  "inputs": "Normalized validated candidate evidence. Input preparation translates authored CSV and explicit ledger order. Expected projections use the literal scenario outputs.",
+  "vectors": [
+    {
+      "id": "IOR-004:assessment",
+      "oracleId": "IOR-004",
+      "goStage": 1,
+      "requirements": [
+        "REQ-006",
+        "REQ-009",
+        "REQ-004"
+      ],
+      "acceptanceCases": [
+        "AC-006-11",
+        "AC-009-01",
+        "AC-004-25"
+      ],
+      "uploadsInOrder": [
+        "incomplete",
+        "passing"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 5000,
+            "maxAgeUs": 86400000000,
+            "planned": 2,
+            "runs": [
+              {
+                "tag": "incomplete",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": []
+              },
+              {
+                "tag": "passing",
+                "sequence": 2,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "incomplete",
+            "currentSequence": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-005:assessment",
+      "oracleId": "IOR-005",
+      "goStage": 1,
+      "requirements": [
+        "REQ-006",
+        "REQ-009",
+        "REQ-004"
+      ],
+      "acceptanceCases": [
+        "AC-006-11",
+        "AC-009-01",
+        "AC-004-25"
+      ],
+      "uploadsInOrder": [
+        "passing",
+        "incomplete"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 5000,
+            "maxAgeUs": 86400000000,
+            "planned": 2,
+            "runs": [
+              {
+                "tag": "passing",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              },
+              {
+                "tag": "incomplete",
+                "sequence": 2,
+                "closedUs": 1794913200000000,
+                "slots": []
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "incomplete",
+            "currentSequence": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-006:assessment",
+      "oracleId": "IOR-006",
+      "goStage": 1,
+      "requirements": [
+        "REQ-006",
+        "REQ-009"
+      ],
+      "acceptanceCases": [
+        "AC-006-11",
+        "AC-009-01"
+      ],
+      "uploadsInOrder": [
+        "incomplete",
+        "passing"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 5000,
+            "maxAgeUs": 86400000000,
+            "planned": 2,
+            "runs": [
+              {
+                "tag": "incomplete",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              },
+              {
+                "tag": "passing",
+                "sequence": 2,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "incomplete",
+            "currentSequence": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-007:assessment",
+      "oracleId": "IOR-007",
+      "goStage": 1,
+      "requirements": [
+        "REQ-006",
+        "REQ-009"
+      ],
+      "acceptanceCases": [
+        "AC-006-11",
+        "AC-009-01"
+      ],
+      "uploadsInOrder": [
+        "passing",
+        "incomplete"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 5000,
+            "maxAgeUs": 86400000000,
+            "planned": 2,
+            "runs": [
+              {
+                "tag": "passing",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              },
+              {
+                "tag": "incomplete",
+                "sequence": 2,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "incomplete",
+            "currentSequence": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-008:assessment",
+      "oracleId": "IOR-008",
+      "goStage": 1,
+      "requirements": [
+        "REQ-006",
+        "REQ-009"
+      ],
+      "acceptanceCases": [
+        "AC-006-11",
+        "AC-009-01"
+      ],
+      "uploadsInOrder": [
+        "incomplete",
+        "passing"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 5000,
+            "maxAgeUs": 86400000000,
+            "planned": 2,
+            "runs": [
+              {
+                "tag": "incomplete",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "ERROR",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              },
+              {
+                "tag": "passing",
+                "sequence": 2,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "incomplete",
+            "currentSequence": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-009:assessment",
+      "oracleId": "IOR-009",
+      "goStage": 1,
+      "requirements": [
+        "REQ-006",
+        "REQ-009"
+      ],
+      "acceptanceCases": [
+        "AC-006-11",
+        "AC-009-01"
+      ],
+      "uploadsInOrder": [
+        "passing",
+        "incomplete"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 5000,
+            "maxAgeUs": 86400000000,
+            "planned": 2,
+            "runs": [
+              {
+                "tag": "passing",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              },
+              {
+                "tag": "incomplete",
+                "sequence": 2,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "ERROR",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "incomplete",
+            "currentSequence": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-010:assessment",
+      "oracleId": "IOR-010",
+      "goStage": 1,
+      "requirements": [
+        "REQ-006",
+        "REQ-009"
+      ],
+      "acceptanceCases": [
+        "AC-006-11",
+        "AC-009-01"
+      ],
+      "uploadsInOrder": [
+        "incomplete",
+        "passing"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 5000,
+            "maxAgeUs": 86400000000,
+            "planned": 2,
+            "runs": [
+              {
+                "tag": "incomplete",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "SKIPPED",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              },
+              {
+                "tag": "passing",
+                "sequence": 2,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "incomplete",
+            "currentSequence": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-011:assessment",
+      "oracleId": "IOR-011",
+      "goStage": 1,
+      "requirements": [
+        "REQ-006",
+        "REQ-009"
+      ],
+      "acceptanceCases": [
+        "AC-006-11",
+        "AC-009-01"
+      ],
+      "uploadsInOrder": [
+        "passing",
+        "incomplete"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 5000,
+            "maxAgeUs": 86400000000,
+            "planned": 2,
+            "runs": [
+              {
+                "tag": "passing",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              },
+              {
+                "tag": "incomplete",
+                "sequence": 2,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "SKIPPED",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "incomplete",
+            "currentSequence": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-012:assessment",
+      "oracleId": "IOR-012",
+      "goStage": 1,
+      "requirements": [
+        "REQ-006",
+        "REQ-009"
+      ],
+      "acceptanceCases": [
+        "AC-006-11",
+        "AC-009-01"
+      ],
+      "uploadsInOrder": [
+        "incomplete",
+        "passing"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 5000,
+            "maxAgeUs": 86400000000,
+            "planned": 2,
+            "runs": [
+              {
+                "tag": "incomplete",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "UNKNOWN",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              },
+              {
+                "tag": "passing",
+                "sequence": 2,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "incomplete",
+            "currentSequence": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-013:assessment",
+      "oracleId": "IOR-013",
+      "goStage": 1,
+      "requirements": [
+        "REQ-006",
+        "REQ-009"
+      ],
+      "acceptanceCases": [
+        "AC-006-11",
+        "AC-009-01"
+      ],
+      "uploadsInOrder": [
+        "passing",
+        "incomplete"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 5000,
+            "maxAgeUs": 86400000000,
+            "planned": 2,
+            "runs": [
+              {
+                "tag": "passing",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              },
+              {
+                "tag": "incomplete",
+                "sequence": 2,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "UNKNOWN",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "incomplete",
+            "currentSequence": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-014:assessment",
+      "oracleId": "IOR-014",
+      "goStage": 1,
+      "requirements": [
+        "REQ-006"
+      ],
+      "acceptanceCases": [
+        "AC-006-02",
+        "AC-006-03",
+        "AC-006-09"
+      ],
+      "uploadsInOrder": [
+        "later-close",
+        "earlier-close"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 5000,
+            "maxAgeUs": 86400000000,
+            "planned": 2,
+            "runs": [
+              {
+                "tag": "later-close",
+                "sequence": 1,
+                "closedUs": 1794907800000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794906300000000
+                  }
+                ]
+              },
+              {
+                "tag": "earlier-close",
+                "sequence": 2,
+                "closedUs": 1794906900000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794906900000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794906900000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "later-close",
+            "currentSequence": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-015:assessment",
+      "oracleId": "IOR-015",
+      "goStage": 1,
+      "requirements": [
+        "REQ-006",
+        "REQ-007"
+      ],
+      "acceptanceCases": [
+        "AC-006-05",
+        "AC-007-07"
+      ],
+      "uploadsInOrder": [
+        "b",
+        "a"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 5000,
+            "maxAgeUs": 86400000000,
+            "planned": 2,
+            "runs": [
+              {
+                "tag": "b",
+                "sequence": 1,
+                "closedUs": 1794915000000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794915000000000
+                  }
+                ]
+              },
+              {
+                "tag": "a",
+                "sequence": 2,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "b",
+            "currentSequence": 1,
+            "planned": 2,
+            "passes": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-016:before-rerun",
+      "oracleId": "IOR-016",
+      "goStage": 1,
+      "requirements": [
+        "REQ-007",
+        "REQ-006"
+      ],
+      "acceptanceCases": [
+        "AC-007-22",
+        "AC-006-07",
+        "AC-007-19"
+      ],
+      "uploadsInOrder": [
+        "partial"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 8000,
+            "maxAgeUs": 86400000000,
+            "planned": 10,
+            "runs": [
+              {
+                "tag": "partial",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "FAIL",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "FAIL",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "FAIL",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "ERROR",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "FAIL",
+            "currentRun": "partial",
+            "planned": 10,
+            "passes": 5,
+            "definitiveRuns": [
+              "partial"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-016:after-rerun",
+      "oracleId": "IOR-016",
+      "goStage": 2,
+      "requirements": [
+        "REQ-007",
+        "REQ-006"
+      ],
+      "acceptanceCases": [
+        "AC-007-22",
+        "AC-006-07",
+        "AC-007-19"
+      ],
+      "uploadsInOrder": [
+        "partial",
+        "full"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 8000,
+            "maxAgeUs": 86400000000,
+            "planned": 10,
+            "runs": [
+              {
+                "tag": "partial",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "FAIL",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "FAIL",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "FAIL",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "ERROR",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              },
+              {
+                "tag": "full",
+                "sequence": 2,
+                "closedUs": 1794915000000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794915000000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794915000000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794915000000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794915000000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794915000000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794915000000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794915000000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794915000000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794915000000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794915000000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "FAIL",
+            "currentRun": "full",
+            "planned": 10,
+            "passes": 10,
+            "definitiveRuns": [
+              "partial"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-017:before-rerun",
+      "oracleId": "IOR-017",
+      "goStage": 1,
+      "requirements": [
+        "REQ-007"
+      ],
+      "acceptanceCases": [
+        "AC-007-04"
+      ],
+      "uploadsInOrder": [
+        "partial"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 8000,
+            "maxAgeUs": 86400000000,
+            "planned": 10,
+            "runs": [
+              {
+                "tag": "partial",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "FAIL",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "FAIL",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "partial",
+            "planned": 10,
+            "passes": 5,
+            "definitiveRuns": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-018:before-rerun",
+      "oracleId": "IOR-018",
+      "goStage": 1,
+      "requirements": [
+        "REQ-007"
+      ],
+      "acceptanceCases": [
+        "AC-007-04"
+      ],
+      "uploadsInOrder": [
+        "partial"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 8000,
+            "maxAgeUs": 86400000000,
+            "planned": 10,
+            "runs": [
+              {
+                "tag": "partial",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "FAIL",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "partial",
+            "planned": 10,
+            "passes": 5,
+            "definitiveRuns": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-019:assessment",
+      "oracleId": "IOR-019",
+      "goStage": 1,
+      "requirements": [
+        "REQ-007"
+      ],
+      "acceptanceCases": [
+        "AC-007-21"
+      ],
+      "uploadsInOrder": [
+        "weighted"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 9000,
+            "maxAgeUs": 86400000000,
+            "planned": 10,
+            "runs": [
+              {
+                "tag": "weighted",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "FAIL",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "PASS",
+            "currentRun": "weighted",
+            "planned": 10,
+            "passes": 9
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-020:assessment",
+      "oracleId": "IOR-020",
+      "goStage": 1,
+      "requirements": [
+        "REQ-007"
+      ],
+      "acceptanceCases": [
+        "AC-007-21"
+      ],
+      "uploadsInOrder": [
+        "weighted"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 9001,
+            "maxAgeUs": 86400000000,
+            "planned": 10,
+            "runs": [
+              {
+                "tag": "weighted",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "FAIL",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "FAIL",
+            "currentRun": "weighted",
+            "planned": 10,
+            "passes": 9
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-021:assessment",
+      "oracleId": "IOR-021",
+      "goStage": 1,
+      "requirements": [
+        "REQ-007"
+      ],
+      "acceptanceCases": [
+        "AC-007-21"
+      ],
+      "uploadsInOrder": [
+        "weighted"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 9000,
+            "maxAgeUs": 86400000000,
+            "planned": 10,
+            "runs": [
+              {
+                "tag": "weighted",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "FAIL",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "FAIL",
+            "currentRun": "weighted",
+            "planned": 10,
+            "passes": 9
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-022:assessment",
+      "oracleId": "IOR-022",
+      "goStage": 1,
+      "requirements": [
+        "REQ-007"
+      ],
+      "acceptanceCases": [
+        "AC-007-15"
+      ],
+      "uploadsInOrder": [
+        "future"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 86400000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "future",
+                "sequence": 1,
+                "closedUs": 1794917100000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794917100000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "PASS",
+            "currentRun": "future",
+            "currentAgeUs": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-023:assessment",
+      "oracleId": "IOR-023",
+      "goStage": 1,
+      "requirements": [
+        "REQ-007"
+      ],
+      "acceptanceCases": [
+        "AC-007-15"
+      ],
+      "uploadsInOrder": [
+        "future"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 86400000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "future",
+                "sequence": 1,
+                "closedUs": 1794917100000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "PASS",
+            "currentRun": "future",
+            "currentAgeUs": 3600000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-026:exact-limit",
+      "oracleId": "IOR-026",
+      "goStage": 1,
+      "requirements": [
+        "REQ-007",
+        "REQ-010"
+      ],
+      "acceptanceCases": [
+        "AC-007-13",
+        "AC-007-14",
+        "AC-007-17",
+        "AC-010-04",
+        "AC-010-06"
+      ],
+      "uploadsInOrder": [
+        "two"
+      ],
+      "assessmentTime": "2026-11-18T11:00:00Z",
+      "input": {
+        "assessedUs": 1794999600000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 5000,
+            "maxAgeUs": 86400000000,
+            "planned": 2,
+            "runs": [
+              {
+                "tag": "two",
+                "sequence": 1,
+                "closedUs": 1794916800000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794916800000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "PASS",
+            "currentRun": "two",
+            "currentAgeUs": 86400000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-026:after-limit",
+      "oracleId": "IOR-026",
+      "goStage": 2,
+      "requirements": [
+        "REQ-007",
+        "REQ-010"
+      ],
+      "acceptanceCases": [
+        "AC-007-13",
+        "AC-007-14",
+        "AC-007-17",
+        "AC-010-04",
+        "AC-010-06"
+      ],
+      "uploadsInOrder": [
+        "two"
+      ],
+      "assessmentTime": "2026-11-18T11:00:00.000001Z",
+      "input": {
+        "assessedUs": 1794999600000001,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 5000,
+            "maxAgeUs": 86400000000,
+            "planned": 2,
+            "runs": [
+              {
+                "tag": "two",
+                "sequence": 1,
+                "closedUs": 1794916800000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": false,
+                    "finishedUs": 1794916800000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "STALE",
+            "currentRun": "two",
+            "currentAgeUs": 86400000001,
+            "completeExpiryUs": 1794999600000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-027:persistent",
+      "oracleId": "IOR-027",
+      "goStage": 1,
+      "requirements": [
+        "REQ-001",
+        "REQ-002",
+        "REQ-003",
+        "REQ-006",
+        "REQ-007"
+      ],
+      "acceptanceCases": [
+        "AC-001-08",
+        "AC-002-19",
+        "AC-003-08",
+        "AC-006-07",
+        "AC-007-03"
+      ],
+      "uploadsInOrder": [
+        "failed",
+        "passing"
+      ],
+      "assessmentTime": "2026-11-18T12:00:00Z",
+      "input": {
+        "assessedUs": 1795003200000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 86400000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "failed",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "FAIL",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              },
+              {
+                "tag": "passing",
+                "sequence": 2,
+                "closedUs": 1794915000000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794915000000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "FAIL",
+            "currentRun": "passing",
+            "definitiveRuns": [
+              "failed"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-030:successor-empty",
+      "oracleId": "IOR-030",
+      "goStage": 1,
+      "requirements": [
+        "REQ-003",
+        "REQ-004",
+        "REQ-008"
+      ],
+      "acceptanceCases": [
+        "AC-003-09",
+        "AC-003-14",
+        "AC-004-05",
+        "AC-004-23",
+        "AC-008-06"
+      ],
+      "uploadsInOrder": [],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 86400000000,
+            "planned": 1,
+            "runs": []
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-033:frozen",
+      "oracleId": "IOR-033",
+      "goStage": 1,
+      "requirements": [
+        "REQ-010",
+        "REQ-004"
+      ],
+      "acceptanceCases": [
+        "AC-010-01",
+        "AC-010-05",
+        "AC-010-07",
+        "AC-004-01"
+      ],
+      "uploadsInOrder": [
+        "RUN1"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 86400000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "RUN1",
+                "sequence": 1,
+                "closedUs": 1794916800000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794916800000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "PASS",
+            "currentRun": "RUN1",
+            "completeExpiryUs": 1795003200000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-034:frozen",
+      "oracleId": "IOR-034",
+      "goStage": 1,
+      "requirements": [
+        "REQ-010"
+      ],
+      "acceptanceCases": [
+        "AC-010-01",
+        "AC-010-05",
+        "AC-010-07",
+        "AC-010-09"
+      ],
+      "uploadsInOrder": [
+        "RUN1",
+        "RUN2"
+      ],
+      "assessmentTime": "2026-11-17T12:01:00Z",
+      "input": {
+        "assessedUs": 1794916860000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 86400000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "RUN1",
+                "sequence": 1,
+                "closedUs": 1794916800000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794916800000000
+                  }
+                ]
+              },
+              {
+                "tag": "RUN2",
+                "sequence": 2,
+                "closedUs": 1794916860000000,
+                "slots": []
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "RUN2",
+            "completeExpiryUs": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-035:frozen",
+      "oracleId": "IOR-035",
+      "goStage": 1,
+      "requirements": [
+        "REQ-010"
+      ],
+      "acceptanceCases": [
+        "AC-010-01",
+        "AC-010-05",
+        "AC-010-07",
+        "AC-010-09"
+      ],
+      "uploadsInOrder": [
+        "RUN2",
+        "RUN1"
+      ],
+      "assessmentTime": "2026-11-17T12:01:00Z",
+      "input": {
+        "assessedUs": 1794916860000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 86400000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "RUN2",
+                "sequence": 1,
+                "closedUs": 1794916800000000,
+                "slots": []
+              },
+              {
+                "tag": "RUN1",
+                "sequence": 2,
+                "closedUs": 1794916800000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794916800000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "RUN2",
+            "completeExpiryUs": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-036:frozen",
+      "oracleId": "IOR-036",
+      "goStage": 1,
+      "requirements": [
+        "REQ-004",
+        "REQ-009",
+        "REQ-010",
+        "REQ-013"
+      ],
+      "acceptanceCases": [
+        "AC-004-13",
+        "AC-009-02",
+        "AC-010-01",
+        "AC-010-02",
+        "AC-010-05",
+        "AC-010-08",
+        "AC-010-10",
+        "AC-013-03"
+      ],
+      "uploadsInOrder": [
+        "matrix"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "B-FAIL",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 86400000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "02-must-fail",
+                "sequence": 2,
+                "closedUs": 1794826800000000,
+                "slots": [
+                  {
+                    "outcome": "FAIL",
+                    "mustPass": true,
+                    "finishedUs": 1794826800000000
+                  }
+                ]
+              },
+              {
+                "tag": "05-later-pass",
+                "sequence": 5,
+                "closedUs": 1794915000000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794915000000000
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "B-PASS",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 86400000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "03-current-pass",
+                "sequence": 3,
+                "closedUs": 1794915000000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794915000000000
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "B-STALE",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 3600000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "04-old-pass",
+                "sequence": 4,
+                "closedUs": 1794909600000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794909600000000
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "B-TIE",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 86400000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "01-tie-empty",
+                "sequence": 1,
+                "closedUs": 1794915000000000,
+                "slots": []
+              },
+              {
+                "tag": "07-tie-pass",
+                "sequence": 6,
+                "closedUs": 1794915000000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794915000000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "B-FAIL",
+            "status": "FAIL",
+            "currentRun": "05-later-pass",
+            "currentSequence": 5,
+            "definitiveRuns": [
+              "02-must-fail"
+            ]
+          },
+          {
+            "id": "B-PASS",
+            "status": "PASS",
+            "currentRun": "03-current-pass",
+            "currentSequence": 3
+          },
+          {
+            "id": "B-STALE",
+            "status": "STALE",
+            "currentRun": "04-old-pass",
+            "currentSequence": 4
+          },
+          {
+            "id": "B-TIE",
+            "status": "UNKNOWN",
+            "currentRun": "01-tie-empty",
+            "currentSequence": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-042:optional-fail",
+      "oracleId": "IOR-042",
+      "goStage": 1,
+      "requirements": [
+        "REQ-002",
+        "REQ-007",
+        "REQ-008"
+      ],
+      "acceptanceCases": [
+        "AC-002-17",
+        "AC-007-20",
+        "AC-008-01",
+        "AC-008-05"
+      ],
+      "uploadsInOrder": [
+        "mixed"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 86400000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "a-required",
+                "sequence": 1,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "OPTIONAL",
+            "required": false,
+            "threshold": 10000,
+            "maxAgeUs": 86400000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "b-optional",
+                "sequence": 2,
+                "closedUs": 1794913200000000,
+                "slots": [
+                  {
+                    "outcome": "FAIL",
+                    "mustPass": false,
+                    "finishedUs": 1794913200000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "PASS",
+            "currentRun": "a-required"
+          },
+          {
+            "id": "OPTIONAL",
+            "status": "FAIL",
+            "currentRun": "b-optional"
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-043:year-one-oldest",
+      "oracleId": "IOR-043",
+      "goStage": 1,
+      "requirements": [
+        "REQ-007",
+        "REQ-010"
+      ],
+      "acceptanceCases": [
+        "AC-007-14",
+        "AC-007-17",
+        "AC-010-01",
+        "AC-010-10"
+      ],
+      "uploadsInOrder": [
+        "mixedAge"
+      ],
+      "assessmentTime": "2026-11-17T12:00:00Z",
+      "input": {
+        "assessedUs": 1794916800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 3600000000,
+            "planned": 2,
+            "runs": [
+              {
+                "tag": "completeYearOne",
+                "sequence": 1,
+                "closedUs": 1794916800000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": -62135596800000000
+                  },
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": 1794916800000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "STALE",
+            "currentRun": "completeYearOne",
+            "planned": 2,
+            "passes": 2,
+            "currentAgeUs": 63930513600000000,
+            "completeExpiryUs": -62135593200000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-044:year-one-exact-limit",
+      "oracleId": "IOR-044",
+      "goStage": 1,
+      "requirements": [
+        "REQ-007",
+        "REQ-010"
+      ],
+      "acceptanceCases": [
+        "AC-007-13",
+        "AC-007-14",
+        "AC-010-01",
+        "AC-010-10"
+      ],
+      "uploadsInOrder": [
+        "early"
+      ],
+      "assessmentTime": "0001-01-01T01:00:00Z",
+      "input": {
+        "assessedUs": -62135593200000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 3600000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "yearOne",
+                "sequence": 1,
+                "closedUs": -62135596800000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": -62135596800000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "PASS",
+            "currentRun": "yearOne",
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": -62135593200000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-044:year-one-after-limit",
+      "oracleId": "IOR-044",
+      "goStage": 2,
+      "requirements": [
+        "REQ-007",
+        "REQ-010"
+      ],
+      "acceptanceCases": [
+        "AC-007-13",
+        "AC-007-14",
+        "AC-010-01",
+        "AC-010-10"
+      ],
+      "uploadsInOrder": [
+        "early"
+      ],
+      "assessmentTime": "0001-01-01T01:00:00.000001Z",
+      "input": {
+        "assessedUs": -62135593199999999,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 3600000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "yearOne",
+                "sequence": 1,
+                "closedUs": -62135596800000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": -62135596800000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "STALE",
+            "currentRun": "yearOne",
+            "planned": 1,
+            "passes": 1,
+            "currentAgeUs": 3600000001,
+            "completeExpiryUs": -62135593200000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-045:year-one-run-only",
+      "oracleId": "IOR-045",
+      "goStage": 1,
+      "requirements": [
+        "REQ-004",
+        "REQ-007",
+        "REQ-010"
+      ],
+      "acceptanceCases": [
+        "AC-004-25",
+        "AC-007-07",
+        "AC-010-09"
+      ],
+      "uploadsInOrder": [
+        "empty"
+      ],
+      "assessmentTime": "0001-01-01T01:00:00Z",
+      "input": {
+        "assessedUs": -62135593200000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 3600000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "yearOneEmpty",
+                "sequence": 1,
+                "closedUs": -62135596800000000,
+                "slots": []
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "BLOCKED",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "UNKNOWN",
+            "currentRun": "yearOneEmpty",
+            "planned": 1,
+            "passes": 0,
+            "completeExpiryUs": null,
+            "currentAgeUs": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "IOR-051:valid-zero-expiry",
+      "oracleId": "IOR-051",
+      "goStage": 1,
+      "requirements": [
+        "REQ-007",
+        "REQ-010"
+      ],
+      "acceptanceCases": [
+        "AC-007-13",
+        "AC-010-01",
+        "AC-010-06"
+      ],
+      "uploadsInOrder": [
+        "zeroExpiry"
+      ],
+      "assessmentTime": "0001-01-01T00:00:00Z",
+      "input": {
+        "assessedUs": -62135596800000000,
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "required": true,
+            "threshold": 10000,
+            "maxAgeUs": 3600000000,
+            "planned": 1,
+            "runs": [
+              {
+                "tag": "validYearZero",
+                "sequence": 1,
+                "closedUs": -62135600400000000,
+                "slots": [
+                  {
+                    "outcome": "PASS",
+                    "mustPass": true,
+                    "finishedUs": -62135600400000000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expectedProjection": {
+        "candidateStatus": "SUFFICIENT",
+        "behaviors": [
+          {
+            "id": "BEH1",
+            "status": "PASS",
+            "currentRun": "validYearZero",
+            "planned": 1,
+            "passes": 1,
+            "currentAgeUs": 3600000000,
+            "completeExpiryUs": -62135596800000000
+          }
+        ]
+      }
+    }
+  ]
+}

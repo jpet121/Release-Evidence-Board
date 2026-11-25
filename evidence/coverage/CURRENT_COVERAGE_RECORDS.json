@@ -1,0 +1,1666 @@
+{
+  "scope": "Derived public observation summaries; original command/audit records remain local",
+  "original_record_file_sha256": "bea955d4bb14dd264e1ae0b86e6d42f10ed84aa1f3a8e71d3f07fa19cfbab104",
+  "records": [
+    {
+      "id": "css-coverage-chrome-windows",
+      "target": "windows-amd64",
+      "status": "PASS",
+      "observations": {
+        "client": "chrome-windows",
+        "method": "reb-css-application/1",
+        "line": {
+          "covered": 74,
+          "total": 74
+        },
+        "branch": {
+          "covered": 6,
+          "total": 6
+        },
+        "files": [
+          {
+            "path": "internal/board/report.html#style-0",
+            "sha256": "0a466f60438bb8b15a95ff84bc1000434e972f384d47f1fb75e009c7b3915384",
+            "lines": [
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16
+            ],
+            "line": {
+              "covered": 8,
+              "total": 8
+            },
+            "branch": {
+              "covered": 2,
+              "total": 2
+            },
+            "missed_lines": [],
+            "missed_rules": [],
+            "missed_outcomes": []
+          },
+          {
+            "path": "internal/browser/style.css",
+            "sha256": "51b6a21d8acb26d41f3794e176073f0e475835fb8c970e035e1147af16ef7b30",
+            "lines": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59,
+              60,
+              61,
+              62,
+              63,
+              64,
+              65,
+              66
+            ],
+            "line": {
+              "covered": 66,
+              "total": 66
+            },
+            "branch": {
+              "covered": 4,
+              "total": 4
+            },
+            "missed_lines": [],
+            "missed_rules": [],
+            "missed_outcomes": []
+          }
+        ],
+        "exclusions": 0,
+        "source_documents": [
+          {
+            "path": "internal/board/report.html",
+            "sha256": "95a9f16f6f605e03bc8045407ba4c86fa225ca8fa2cc630c62994dfc93727109"
+          },
+          {
+            "path": "internal/browser/style.css",
+            "sha256": "51b6a21d8acb26d41f3794e176073f0e475835fb8c970e035e1147af16ef7b30"
+          }
+        ],
+        "capability_controls": [
+          "same-line-unmatched-and-print-true-missing",
+          "overridden-accepted-declaration-participates",
+          "native-width-boundaries-and-print",
+          "invalid-declaration",
+          "collision",
+          "inactive-ancestor-no-inner-outcome",
+          "noninherited-child-marker-zero",
+          "source-hash-mismatch",
+          "omitted-active-source",
+          "disabled-source-after-binding",
+          "unsupported-syntax-blocked"
+        ],
+        "application_sha256": "3b7207d82115ffe62a1b3babb60db8301d28c7f07485ec2f1e0cf1f99d51b905",
+        "reused_execution": {
+          "original_native_bindings": {
+            "policy": "ac45da4647f4c6e5445e00debca958135c7b3a9039b6be1b043fe7f12e45e23a",
+            "requirements": "971d315c066a535462dbf9e473d27e1513aae6f65f7771534bdc75890425be78",
+            "source_manifest": "aa74895f247b81b3b3f575a3fa4f232fa3f2ce2dc89fe8f1319cd80edf3b66a8",
+            "verification_manifest": "98af8d08f13dd85733dba8bbaafe85ea0048b5ab66d7f79ecb336082aa80f938"
+          },
+          "previous_qualification_bindings": {
+            "policy": "ac45da4647f4c6e5445e00debca958135c7b3a9039b6be1b043fe7f12e45e23a",
+            "requirements": "971d315c066a535462dbf9e473d27e1513aae6f65f7771534bdc75890425be78",
+            "source_manifest": "aa74895f247b81b3b3f575a3fa4f232fa3f2ce2dc89fe8f1319cd80edf3b66a8",
+            "verification_manifest": "98af8d08f13dd85733dba8bbaafe85ea0048b5ab66d7f79ecb336082aa80f938"
+          },
+          "original_native_receipt": {
+            "path": "compliance/evidence/run/runs/run-ticket80-css-2686ec0/windows-amd64/css-coverage-chrome-windows.command.json",
+            "sha256": "af9b5ab186235b24321c9353ddc25b8b8a96a6072379876799e1093e633c9f72"
+          },
+          "metadata_only_amendment": "Two actual reviewer report_path fields; source/tests/commands/tools/adapters/coverage definitions identical.",
+          "not_a_new_native_execution": true
+        }
+      }
+    },
+    {
+      "id": "css-coverage-edge-windows",
+      "target": "windows-amd64",
+      "status": "PASS",
+      "observations": {
+        "client": "edge-windows",
+        "method": "reb-css-application/1",
+        "line": {
+          "covered": 74,
+          "total": 74
+        },
+        "branch": {
+          "covered": 6,
+          "total": 6
+        },
+        "files": [
+          {
+            "path": "internal/board/report.html#style-0",
+            "sha256": "0a466f60438bb8b15a95ff84bc1000434e972f384d47f1fb75e009c7b3915384",
+            "lines": [
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16
+            ],
+            "line": {
+              "covered": 8,
+              "total": 8
+            },
+            "branch": {
+              "covered": 2,
+              "total": 2
+            },
+            "missed_lines": [],
+            "missed_rules": [],
+            "missed_outcomes": []
+          },
+          {
+            "path": "internal/browser/style.css",
+            "sha256": "51b6a21d8acb26d41f3794e176073f0e475835fb8c970e035e1147af16ef7b30",
+            "lines": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59,
+              60,
+              61,
+              62,
+              63,
+              64,
+              65,
+              66
+            ],
+            "line": {
+              "covered": 66,
+              "total": 66
+            },
+            "branch": {
+              "covered": 4,
+              "total": 4
+            },
+            "missed_lines": [],
+            "missed_rules": [],
+            "missed_outcomes": []
+          }
+        ],
+        "exclusions": 0,
+        "source_documents": [
+          {
+            "path": "internal/board/report.html",
+            "sha256": "95a9f16f6f605e03bc8045407ba4c86fa225ca8fa2cc630c62994dfc93727109"
+          },
+          {
+            "path": "internal/browser/style.css",
+            "sha256": "51b6a21d8acb26d41f3794e176073f0e475835fb8c970e035e1147af16ef7b30"
+          }
+        ],
+        "capability_controls": [
+          "same-line-unmatched-and-print-true-missing",
+          "overridden-accepted-declaration-participates",
+          "native-width-boundaries-and-print",
+          "invalid-declaration",
+          "collision",
+          "inactive-ancestor-no-inner-outcome",
+          "noninherited-child-marker-zero",
+          "source-hash-mismatch",
+          "omitted-active-source",
+          "disabled-source-after-binding",
+          "unsupported-syntax-blocked"
+        ],
+        "application_sha256": "3b7207d82115ffe62a1b3babb60db8301d28c7f07485ec2f1e0cf1f99d51b905",
+        "reused_execution": {
+          "original_native_bindings": {
+            "policy": "ac45da4647f4c6e5445e00debca958135c7b3a9039b6be1b043fe7f12e45e23a",
+            "requirements": "971d315c066a535462dbf9e473d27e1513aae6f65f7771534bdc75890425be78",
+            "source_manifest": "aa74895f247b81b3b3f575a3fa4f232fa3f2ce2dc89fe8f1319cd80edf3b66a8",
+            "verification_manifest": "98af8d08f13dd85733dba8bbaafe85ea0048b5ab66d7f79ecb336082aa80f938"
+          },
+          "previous_qualification_bindings": {
+            "policy": "ac45da4647f4c6e5445e00debca958135c7b3a9039b6be1b043fe7f12e45e23a",
+            "requirements": "971d315c066a535462dbf9e473d27e1513aae6f65f7771534bdc75890425be78",
+            "source_manifest": "aa74895f247b81b3b3f575a3fa4f232fa3f2ce2dc89fe8f1319cd80edf3b66a8",
+            "verification_manifest": "98af8d08f13dd85733dba8bbaafe85ea0048b5ab66d7f79ecb336082aa80f938"
+          },
+          "original_native_receipt": {
+            "path": "compliance/evidence/run/runs/run-ticket80-css-2686ec0/windows-amd64/css-coverage-edge-windows.command.json",
+            "sha256": "f8e5198241c99346797f3bc6c46a125531f73d25aca1ff25b5e8b3759c1f703f"
+          },
+          "metadata_only_amendment": "Two actual reviewer report_path fields; source/tests/commands/tools/adapters/coverage definitions identical.",
+          "not_a_new_native_execution": true
+        }
+      }
+    },
+    {
+      "id": "css-coverage-chrome-ubuntu",
+      "target": "linux-amd64",
+      "status": "PASS",
+      "observations": {
+        "client": "chrome-ubuntu",
+        "method": "reb-css-application/1",
+        "line": {
+          "covered": 74,
+          "total": 74
+        },
+        "branch": {
+          "covered": 6,
+          "total": 6
+        },
+        "files": [
+          {
+            "path": "internal/board/report.html#style-0",
+            "sha256": "0a466f60438bb8b15a95ff84bc1000434e972f384d47f1fb75e009c7b3915384",
+            "lines": [
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16
+            ],
+            "line": {
+              "covered": 8,
+              "total": 8
+            },
+            "branch": {
+              "covered": 2,
+              "total": 2
+            },
+            "missed_lines": [],
+            "missed_rules": [],
+            "missed_outcomes": []
+          },
+          {
+            "path": "internal/browser/style.css",
+            "sha256": "51b6a21d8acb26d41f3794e176073f0e475835fb8c970e035e1147af16ef7b30",
+            "lines": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59,
+              60,
+              61,
+              62,
+              63,
+              64,
+              65,
+              66
+            ],
+            "line": {
+              "covered": 66,
+              "total": 66
+            },
+            "branch": {
+              "covered": 4,
+              "total": 4
+            },
+            "missed_lines": [],
+            "missed_rules": [],
+            "missed_outcomes": []
+          }
+        ],
+        "exclusions": 0,
+        "source_documents": [
+          {
+            "path": "internal/board/report.html",
+            "sha256": "95a9f16f6f605e03bc8045407ba4c86fa225ca8fa2cc630c62994dfc93727109"
+          },
+          {
+            "path": "internal/browser/style.css",
+            "sha256": "51b6a21d8acb26d41f3794e176073f0e475835fb8c970e035e1147af16ef7b30"
+          }
+        ],
+        "capability_controls": [
+          "same-line-unmatched-and-print-true-missing",
+          "overridden-accepted-declaration-participates",
+          "native-width-boundaries-and-print",
+          "invalid-declaration",
+          "collision",
+          "inactive-ancestor-no-inner-outcome",
+          "noninherited-child-marker-zero",
+          "source-hash-mismatch",
+          "omitted-active-source",
+          "disabled-source-after-binding",
+          "unsupported-syntax-blocked"
+        ],
+        "application_sha256": "a8e2a784fd4c6322e55ee5645941db260094667bd17e37762651c5eee777b997",
+        "reused_execution": {
+          "original_native_bindings": {
+            "policy": "ac45da4647f4c6e5445e00debca958135c7b3a9039b6be1b043fe7f12e45e23a",
+            "requirements": "971d315c066a535462dbf9e473d27e1513aae6f65f7771534bdc75890425be78",
+            "source_manifest": "aa74895f247b81b3b3f575a3fa4f232fa3f2ce2dc89fe8f1319cd80edf3b66a8",
+            "verification_manifest": "98af8d08f13dd85733dba8bbaafe85ea0048b5ab66d7f79ecb336082aa80f938"
+          },
+          "previous_qualification_bindings": {
+            "policy": "ac45da4647f4c6e5445e00debca958135c7b3a9039b6be1b043fe7f12e45e23a",
+            "requirements": "971d315c066a535462dbf9e473d27e1513aae6f65f7771534bdc75890425be78",
+            "source_manifest": "aa74895f247b81b3b3f575a3fa4f232fa3f2ce2dc89fe8f1319cd80edf3b66a8",
+            "verification_manifest": "98af8d08f13dd85733dba8bbaafe85ea0048b5ab66d7f79ecb336082aa80f938"
+          },
+          "original_native_receipt": {
+            "path": "compliance/evidence/run/runs/run-ticket80-css-2686ec0/linux-amd64/css-coverage-chrome-ubuntu.command.json",
+            "sha256": "cee7255c67bb3e856468a582303c09f75cf519fe9d41fc0e4604593375dc5f14"
+          },
+          "metadata_only_amendment": "Two actual reviewer report_path fields; source/tests/commands/tools/adapters/coverage definitions identical.",
+          "not_a_new_native_execution": true
+        }
+      }
+    },
+    {
+      "id": "css-coverage-firefox-ubuntu",
+      "target": "linux-amd64",
+      "status": "PASS",
+      "observations": {
+        "client": "firefox-ubuntu",
+        "method": "reb-css-application/1",
+        "line": {
+          "covered": 74,
+          "total": 74
+        },
+        "branch": {
+          "covered": 6,
+          "total": 6
+        },
+        "files": [
+          {
+            "path": "internal/board/report.html#style-0",
+            "sha256": "0a466f60438bb8b15a95ff84bc1000434e972f384d47f1fb75e009c7b3915384",
+            "lines": [
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16
+            ],
+            "line": {
+              "covered": 8,
+              "total": 8
+            },
+            "branch": {
+              "covered": 2,
+              "total": 2
+            },
+            "missed_lines": [],
+            "missed_rules": [],
+            "missed_outcomes": []
+          },
+          {
+            "path": "internal/browser/style.css",
+            "sha256": "51b6a21d8acb26d41f3794e176073f0e475835fb8c970e035e1147af16ef7b30",
+            "lines": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59,
+              60,
+              61,
+              62,
+              63,
+              64,
+              65,
+              66
+            ],
+            "line": {
+              "covered": 66,
+              "total": 66
+            },
+            "branch": {
+              "covered": 4,
+              "total": 4
+            },
+            "missed_lines": [],
+            "missed_rules": [],
+            "missed_outcomes": []
+          }
+        ],
+        "exclusions": 0,
+        "source_documents": [
+          {
+            "path": "internal/board/report.html",
+            "sha256": "95a9f16f6f605e03bc8045407ba4c86fa225ca8fa2cc630c62994dfc93727109"
+          },
+          {
+            "path": "internal/browser/style.css",
+            "sha256": "51b6a21d8acb26d41f3794e176073f0e475835fb8c970e035e1147af16ef7b30"
+          }
+        ],
+        "capability_controls": [
+          "same-line-unmatched-and-print-true-missing",
+          "overridden-accepted-declaration-participates",
+          "native-width-boundaries-and-print",
+          "invalid-declaration",
+          "collision",
+          "inactive-ancestor-no-inner-outcome",
+          "noninherited-child-marker-zero",
+          "source-hash-mismatch",
+          "omitted-active-source",
+          "disabled-source-after-binding",
+          "unsupported-syntax-blocked"
+        ],
+        "application_sha256": "a8e2a784fd4c6322e55ee5645941db260094667bd17e37762651c5eee777b997",
+        "reused_execution": {
+          "original_native_bindings": {
+            "policy": "ac45da4647f4c6e5445e00debca958135c7b3a9039b6be1b043fe7f12e45e23a",
+            "requirements": "971d315c066a535462dbf9e473d27e1513aae6f65f7771534bdc75890425be78",
+            "source_manifest": "aa74895f247b81b3b3f575a3fa4f232fa3f2ce2dc89fe8f1319cd80edf3b66a8",
+            "verification_manifest": "98af8d08f13dd85733dba8bbaafe85ea0048b5ab66d7f79ecb336082aa80f938"
+          },
+          "previous_qualification_bindings": {
+            "policy": "ac45da4647f4c6e5445e00debca958135c7b3a9039b6be1b043fe7f12e45e23a",
+            "requirements": "971d315c066a535462dbf9e473d27e1513aae6f65f7771534bdc75890425be78",
+            "source_manifest": "aa74895f247b81b3b3f575a3fa4f232fa3f2ce2dc89fe8f1319cd80edf3b66a8",
+            "verification_manifest": "98af8d08f13dd85733dba8bbaafe85ea0048b5ab66d7f79ecb336082aa80f938"
+          },
+          "original_native_receipt": {
+            "path": "compliance/evidence/run/runs/run-ticket80-css-2686ec0/linux-amd64/css-coverage-firefox-ubuntu.command.json",
+            "sha256": "646d8bcd0ba1930d56b6fa00576c22cd2d24133e9db6567fc8c25c8bcd88266e"
+          },
+          "metadata_only_amendment": "Two actual reviewer report_path fields; source/tests/commands/tools/adapters/coverage definitions identical.",
+          "not_a_new_native_execution": true
+        }
+      }
+    },
+    {
+      "id": "coverage-windows-amd64",
+      "target": "windows-amd64",
+      "status": "PASS",
+      "observations": {
+        "files": [
+          {
+            "path": "cmd/evidence-board/main.go",
+            "active": true,
+            "line": {
+              "covered": 235,
+              "total": 235
+            },
+            "branch": {
+              "covered": 162,
+              "total": 162
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/access/policy.go",
+            "active": true,
+            "line": {
+              "covered": 16,
+              "total": 16
+            },
+            "branch": {
+              "covered": 17,
+              "total": 17
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/backuppair/publish.go",
+            "active": true,
+            "line": {
+              "covered": 5,
+              "total": 5
+            },
+            "branch": {
+              "covered": 4,
+              "total": 4
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/accounts.go",
+            "active": true,
+            "line": {
+              "covered": 79,
+              "total": 79
+            },
+            "branch": {
+              "covered": 72,
+              "total": 72
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/ai_history.go",
+            "active": true,
+            "line": {
+              "covered": 197,
+              "total": 197
+            },
+            "branch": {
+              "covered": 439,
+              "total": 439
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/assessment.go",
+            "active": true,
+            "line": {
+              "covered": 169,
+              "total": 169
+            },
+            "branch": {
+              "covered": 146,
+              "total": 146
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/baselines.go",
+            "active": true,
+            "line": {
+              "covered": 330,
+              "total": 330
+            },
+            "branch": {
+              "covered": 312,
+              "total": 312
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/candidates.go",
+            "active": true,
+            "line": {
+              "covered": 155,
+              "total": 155
+            },
+            "branch": {
+              "covered": 118,
+              "total": 118
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/csv.go",
+            "active": true,
+            "line": {
+              "covered": 162,
+              "total": 162
+            },
+            "branch": {
+              "covered": 202,
+              "total": 202
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/descriptor.go",
+            "active": true,
+            "line": {
+              "covered": 106,
+              "total": 106
+            },
+            "branch": {
+              "covered": 147,
+              "total": 147
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/import_rate.go",
+            "active": true,
+            "line": {
+              "covered": 33,
+              "total": 33
+            },
+            "branch": {
+              "covered": 44,
+              "total": 44
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/imports.go",
+            "active": true,
+            "line": {
+              "covered": 402,
+              "total": 402
+            },
+            "branch": {
+              "covered": 285,
+              "total": 285
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/integrity.go",
+            "active": true,
+            "line": {
+              "covered": 346,
+              "total": 346
+            },
+            "branch": {
+              "covered": 444,
+              "total": 444
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/operating_config.go",
+            "active": true,
+            "line": {
+              "covered": 67,
+              "total": 67
+            },
+            "branch": {
+              "covered": 56,
+              "total": 56
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/recovery.go",
+            "active": true,
+            "line": {
+              "covered": 389,
+              "total": 389
+            },
+            "branch": {
+              "covered": 307,
+              "total": 307
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/report.html",
+            "active": true,
+            "line": {
+              "covered": 46,
+              "total": 46
+            },
+            "branch": {
+              "covered": 60,
+              "total": 60
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/reports.go",
+            "active": true,
+            "line": {
+              "covered": 159,
+              "total": 159
+            },
+            "branch": {
+              "covered": 136,
+              "total": 136
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/retention.go",
+            "active": true,
+            "line": {
+              "covered": 168,
+              "total": 168
+            },
+            "branch": {
+              "covered": 144,
+              "total": 144
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/store.go",
+            "active": true,
+            "line": {
+              "covered": 147,
+              "total": 147
+            },
+            "branch": {
+              "covered": 124,
+              "total": 124
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/browser/authoring.go",
+            "active": true,
+            "line": {
+              "covered": 260,
+              "total": 260
+            },
+            "branch": {
+              "covered": 187,
+              "total": 187
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/browser/evidence.go",
+            "active": true,
+            "line": {
+              "covered": 187,
+              "total": 187
+            },
+            "branch": {
+              "covered": 108,
+              "total": 108
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/browser/health.go",
+            "active": true,
+            "line": {
+              "covered": 13,
+              "total": 13
+            },
+            "branch": {
+              "covered": 6,
+              "total": 6
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/browser/pages.html",
+            "active": true,
+            "line": {
+              "covered": 193,
+              "total": 193
+            },
+            "branch": {
+              "covered": 298,
+              "total": 298
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/browser/server.go",
+            "active": true,
+            "line": {
+              "covered": 227,
+              "total": 227
+            },
+            "branch": {
+              "covered": 122,
+              "total": 122
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/recordset/delete.go",
+            "active": true,
+            "line": {
+              "covered": 7,
+              "total": 7
+            },
+            "branch": {
+              "covered": 6,
+              "total": 6
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/recordset/frozen_html.go",
+            "active": true,
+            "line": {
+              "covered": 10,
+              "total": 10
+            },
+            "branch": {
+              "covered": 6,
+              "total": 6
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/recordset/json.go",
+            "active": true,
+            "line": {
+              "covered": 8,
+              "total": 8
+            },
+            "branch": {
+              "covered": 6,
+              "total": 6
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/recordset/sequence.go",
+            "active": true,
+            "line": {
+              "covered": 6,
+              "total": 6
+            },
+            "branch": {
+              "covered": 4,
+              "total": 4
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/recordset/write_json.go",
+            "active": true,
+            "line": {
+              "covered": 14,
+              "total": 14
+            },
+            "branch": {
+              "covered": 12,
+              "total": 12
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/upload/read.go",
+            "active": true,
+            "line": {
+              "covered": 3,
+              "total": 3
+            },
+            "branch": {
+              "covered": 0,
+              "total": 0
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          }
+        ],
+        "exclusions": 0,
+        "metric_applicability": [
+          {
+            "path": "internal/upload/read.go",
+            "metric": "branch",
+            "disposition": "NOT_APPLICABLE",
+            "source_sha256": "354f92e62b70ed897fe928d9f180103b909da7528157836c2909c60bd121b0d7",
+            "reviewers": [
+              {
+                "role": "standards_reviewer"
+              },
+              {
+                "role": "requirements_reviewer"
+              }
+            ],
+            "reason": "Genuine zero outcomes, independently reviewed source and target-native measurement; file and executable lines remain measured."
+          }
+        ],
+        "browser_observers": [
+          {
+            "id": "chrome-windows",
+            "status": "PASS",
+            "executable_sha256": "d67188439a3573c31287832fc32caf847461e986fcca20b287212fcfce6b4a94",
+            "artifact": "compliance/evidence/run/runs/run-ticket80-0a75f07-final/windows-amd64/coverage-browser/chrome-windows/results.json",
+            "checkpoints": 28
+          },
+          {
+            "id": "edge-windows",
+            "status": "PASS",
+            "executable_sha256": "d67188439a3573c31287832fc32caf847461e986fcca20b287212fcfce6b4a94",
+            "artifact": "compliance/evidence/run/runs/run-ticket80-0a75f07-final/windows-amd64/coverage-browser/edge-windows/results.json",
+            "checkpoints": 27
+          }
+        ],
+        "static_presentation_unreviewed": [
+          "internal/browser/style.css"
+        ],
+        "reused_execution": {
+          "original_native_bindings": {
+            "policy": "ac45da4647f4c6e5445e00debca958135c7b3a9039b6be1b043fe7f12e45e23a",
+            "requirements": "971d315c066a535462dbf9e473d27e1513aae6f65f7771534bdc75890425be78",
+            "source_manifest": "aa74895f247b81b3b3f575a3fa4f232fa3f2ce2dc89fe8f1319cd80edf3b66a8",
+            "verification_manifest": "377406bf9e4a54d68b5b308b5c80ca42be3006158b12a5f0d6194b4bc5f3cb55"
+          },
+          "previous_qualification_bindings": {
+            "policy": "ac45da4647f4c6e5445e00debca958135c7b3a9039b6be1b043fe7f12e45e23a",
+            "requirements": "971d315c066a535462dbf9e473d27e1513aae6f65f7771534bdc75890425be78",
+            "source_manifest": "aa74895f247b81b3b3f575a3fa4f232fa3f2ce2dc89fe8f1319cd80edf3b66a8",
+            "verification_manifest": "98af8d08f13dd85733dba8bbaafe85ea0048b5ab66d7f79ecb336082aa80f938"
+          },
+          "original_native_receipt": {
+            "path": "compliance/evidence/run/runs/run-ticket80-0a75f07-final/windows-amd64/coverage-windows-amd64.command.json",
+            "sha256": "c3c94a548f37a20e71b377be3d989cc0954ff921f1e14747e6366249dd9a1218"
+          },
+          "metadata_only_amendment": "Two actual reviewer report_path fields; source/tests/commands/tools/adapters/coverage definitions identical.",
+          "not_a_new_native_execution": true
+        }
+      }
+    },
+    {
+      "id": "coverage-linux-amd64",
+      "target": "linux-amd64",
+      "status": "PASS",
+      "observations": {
+        "files": [
+          {
+            "path": "cmd/evidence-board/main.go",
+            "active": true,
+            "line": {
+              "covered": 235,
+              "total": 235
+            },
+            "branch": {
+              "covered": 162,
+              "total": 162
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/access/policy.go",
+            "active": true,
+            "line": {
+              "covered": 16,
+              "total": 16
+            },
+            "branch": {
+              "covered": 17,
+              "total": 17
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/backuppair/publish.go",
+            "active": true,
+            "line": {
+              "covered": 5,
+              "total": 5
+            },
+            "branch": {
+              "covered": 4,
+              "total": 4
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/accounts.go",
+            "active": true,
+            "line": {
+              "covered": 79,
+              "total": 79
+            },
+            "branch": {
+              "covered": 72,
+              "total": 72
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/ai_history.go",
+            "active": true,
+            "line": {
+              "covered": 197,
+              "total": 197
+            },
+            "branch": {
+              "covered": 439,
+              "total": 439
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/assessment.go",
+            "active": true,
+            "line": {
+              "covered": 169,
+              "total": 169
+            },
+            "branch": {
+              "covered": 146,
+              "total": 146
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/baselines.go",
+            "active": true,
+            "line": {
+              "covered": 330,
+              "total": 330
+            },
+            "branch": {
+              "covered": 312,
+              "total": 312
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/candidates.go",
+            "active": true,
+            "line": {
+              "covered": 155,
+              "total": 155
+            },
+            "branch": {
+              "covered": 118,
+              "total": 118
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/csv.go",
+            "active": true,
+            "line": {
+              "covered": 162,
+              "total": 162
+            },
+            "branch": {
+              "covered": 202,
+              "total": 202
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/descriptor.go",
+            "active": true,
+            "line": {
+              "covered": 106,
+              "total": 106
+            },
+            "branch": {
+              "covered": 147,
+              "total": 147
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/import_rate.go",
+            "active": true,
+            "line": {
+              "covered": 33,
+              "total": 33
+            },
+            "branch": {
+              "covered": 44,
+              "total": 44
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/imports.go",
+            "active": true,
+            "line": {
+              "covered": 402,
+              "total": 402
+            },
+            "branch": {
+              "covered": 285,
+              "total": 285
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/integrity.go",
+            "active": true,
+            "line": {
+              "covered": 346,
+              "total": 346
+            },
+            "branch": {
+              "covered": 444,
+              "total": 444
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/operating_config.go",
+            "active": true,
+            "line": {
+              "covered": 67,
+              "total": 67
+            },
+            "branch": {
+              "covered": 56,
+              "total": 56
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/recovery.go",
+            "active": true,
+            "line": {
+              "covered": 389,
+              "total": 389
+            },
+            "branch": {
+              "covered": 307,
+              "total": 307
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/report.html",
+            "active": true,
+            "line": {
+              "covered": 46,
+              "total": 46
+            },
+            "branch": {
+              "covered": 60,
+              "total": 60
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/reports.go",
+            "active": true,
+            "line": {
+              "covered": 159,
+              "total": 159
+            },
+            "branch": {
+              "covered": 136,
+              "total": 136
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/retention.go",
+            "active": true,
+            "line": {
+              "covered": 168,
+              "total": 168
+            },
+            "branch": {
+              "covered": 144,
+              "total": 144
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/board/store.go",
+            "active": true,
+            "line": {
+              "covered": 147,
+              "total": 147
+            },
+            "branch": {
+              "covered": 124,
+              "total": 124
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/browser/authoring.go",
+            "active": true,
+            "line": {
+              "covered": 260,
+              "total": 260
+            },
+            "branch": {
+              "covered": 187,
+              "total": 187
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/browser/evidence.go",
+            "active": true,
+            "line": {
+              "covered": 187,
+              "total": 187
+            },
+            "branch": {
+              "covered": 108,
+              "total": 108
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/browser/health.go",
+            "active": true,
+            "line": {
+              "covered": 13,
+              "total": 13
+            },
+            "branch": {
+              "covered": 6,
+              "total": 6
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/browser/pages.html",
+            "active": true,
+            "line": {
+              "covered": 193,
+              "total": 193
+            },
+            "branch": {
+              "covered": 298,
+              "total": 298
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/browser/server.go",
+            "active": true,
+            "line": {
+              "covered": 227,
+              "total": 227
+            },
+            "branch": {
+              "covered": 122,
+              "total": 122
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/recordset/delete.go",
+            "active": true,
+            "line": {
+              "covered": 7,
+              "total": 7
+            },
+            "branch": {
+              "covered": 6,
+              "total": 6
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/recordset/frozen_html.go",
+            "active": true,
+            "line": {
+              "covered": 10,
+              "total": 10
+            },
+            "branch": {
+              "covered": 6,
+              "total": 6
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/recordset/json.go",
+            "active": true,
+            "line": {
+              "covered": 8,
+              "total": 8
+            },
+            "branch": {
+              "covered": 6,
+              "total": 6
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/recordset/sequence.go",
+            "active": true,
+            "line": {
+              "covered": 6,
+              "total": 6
+            },
+            "branch": {
+              "covered": 4,
+              "total": 4
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/recordset/write_json.go",
+            "active": true,
+            "line": {
+              "covered": 14,
+              "total": 14
+            },
+            "branch": {
+              "covered": 12,
+              "total": 12
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          },
+          {
+            "path": "internal/upload/read.go",
+            "active": true,
+            "line": {
+              "covered": 3,
+              "total": 3
+            },
+            "branch": {
+              "covered": 0,
+              "total": 0
+            },
+            "missed_sites": [],
+            "unmeasured_expression_lines": []
+          }
+        ],
+        "exclusions": 0,
+        "metric_applicability": [
+          {
+            "path": "internal/upload/read.go",
+            "metric": "branch",
+            "disposition": "NOT_APPLICABLE",
+            "source_sha256": "354f92e62b70ed897fe928d9f180103b909da7528157836c2909c60bd121b0d7",
+            "reviewers": [
+              {
+                "role": "standards_reviewer"
+              },
+              {
+                "role": "requirements_reviewer"
+              }
+            ],
+            "reason": "Genuine zero outcomes, independently reviewed source and target-native measurement; file and executable lines remain measured."
+          }
+        ],
+        "browser_observers": [
+          {
+            "id": "chrome-ubuntu",
+            "status": "PASS",
+            "executable_sha256": "77146b13991bf8c304350a48f6269fe7193fc2984eb52efdc627ff89d050bce3",
+            "artifact": "compliance/evidence/run/runs/run-ticket80-32ba36c-final/linux-amd64/coverage-browser/chrome-ubuntu/results.json",
+            "checkpoints": 28
+          },
+          {
+            "id": "firefox-ubuntu",
+            "status": "PASS",
+            "executable_sha256": "77146b13991bf8c304350a48f6269fe7193fc2984eb52efdc627ff89d050bce3",
+            "artifact": "compliance/evidence/run/runs/run-ticket80-32ba36c-final/linux-amd64/coverage-browser/firefox-ubuntu/results.json",
+            "checkpoints": 27
+          }
+        ],
+        "static_presentation_unreviewed": [
+          "internal/browser/style.css"
+        ],
+        "reused_execution": {
+          "original_native_bindings": {
+            "policy": "ac45da4647f4c6e5445e00debca958135c7b3a9039b6be1b043fe7f12e45e23a",
+            "requirements": "971d315c066a535462dbf9e473d27e1513aae6f65f7771534bdc75890425be78",
+            "source_manifest": "aa74895f247b81b3b3f575a3fa4f232fa3f2ce2dc89fe8f1319cd80edf3b66a8",
+            "verification_manifest": "2214e17827be2f373f992167f7b4d61690bb87b3873f4dd95e3d999c6e1147d6"
+          },
+          "previous_qualification_bindings": {
+            "policy": "ac45da4647f4c6e5445e00debca958135c7b3a9039b6be1b043fe7f12e45e23a",
+            "requirements": "971d315c066a535462dbf9e473d27e1513aae6f65f7771534bdc75890425be78",
+            "source_manifest": "aa74895f247b81b3b3f575a3fa4f232fa3f2ce2dc89fe8f1319cd80edf3b66a8",
+            "verification_manifest": "98af8d08f13dd85733dba8bbaafe85ea0048b5ab66d7f79ecb336082aa80f938"
+          },
+          "original_native_receipt": {
+            "path": "compliance/evidence/run/runs/run-ticket80-32ba36c-final/linux-amd64/coverage-linux-amd64.command.json",
+            "sha256": "e8bdae0e92154f41193dc5159f0db48f8d7d01dd68d10b6e901fcf6c4700fad0"
+          },
+          "metadata_only_amendment": "Two actual reviewer report_path fields; source/tests/commands/tools/adapters/coverage definitions identical.",
+          "not_a_new_native_execution": true
+        }
+      }
+    }
+  ]
+}
