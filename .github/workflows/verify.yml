@@ -29,6 +29,12 @@ jobs:
         with:
           go-version-file: go.mod
           cache: true
+      - name: Use the Windows runner work volume for native storage tests
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          "TMP=$env:RUNNER_TEMP" >> $env:GITHUB_ENV
+          "TEMP=$env:RUNNER_TEMP" >> $env:GITHUB_ENV
       - run: go mod verify
       - run: go test -count=1 ./...
       - name: Test storage faults on an isolated Linux filesystem
