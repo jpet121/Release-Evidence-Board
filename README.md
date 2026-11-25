@@ -1,8 +1,8 @@
 # Release Evidence Board · A release readiness workbench
 
-**The rerun passed. Why is this release candidate still blocked?**
+**Scenario.** A release manager sees that a required access test passed on its second run. It failed on the first run, on the same build and in the same test environment. The board keeps both results and links the failure to its row in the original CSV file.
 
-Test T1 checks that the application rejects an unauthorized read. The team marked T1 as a must-pass test. It failed on the first run and passed on the second. Both runs used the same build, test environment, and approved tests. Release Evidence Board keeps both results. The reviewer can trace the block to the failed row in the original CSV.
+**Value.** The reviewer can explain why the candidate is still blocked. Once the team corrects the test environment, it can assess a new candidate with fresh evidence and keep the original decision available for audit.
 
 ![The original candidate is BLOCKED. The passing rerun points to CSV row 2. The report identifies the earlier must-pass failure for T1.](docs/images/social-preview.png)
 
