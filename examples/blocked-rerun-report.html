@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>RPT-1 · Historical assessment · BLOCKED</title>
+<style>
+body{margin:0;background:#faf9fb;color:#26252b;font:1rem/1.52 system-ui}
+main{max-width:72rem;margin:auto;padding:clamp(1rem,4vw,3rem)}
+h1,h2,h3,p,dl{margin-block:.5em 1em} header,section,article{padding:1.2rem;margin-block:1rem;background:white;border:1px solid #dfdde3;border-radius:1rem}
+header{background:#eae3f5}a{color:#504979;text-underline-offset:3px}a:focus-visible,summary:focus-visible{outline:3px solid #504979;outline-offset:3px}
+dt{font-weight:700}dd{margin:0 0 .6rem;overflow-wrap:anywhere}pre,code{white-space:pre-wrap;overflow-wrap:anywhere}
+li{margin-bottom:.35rem}.records{list-style:none;padding:0}.row{border-left:3px solid #b0a3d4;padding:.5rem .75rem;margin:.75rem 0}
+.facts{display:flex;gap:1rem;flex-wrap:wrap}.facts span{padding:.25rem .6rem;background:#fff;border-radius:.5rem}
+@media print{main{padding:0}section,article,header{border:1px solid #999;break-inside:avoid}}
+</style>
+</head>
+<body>
+<main id="main">
+<header>
+<p>Release Evidence Board · RPT-1</p>
+<h1>Historical assessment · BLOCKED</h1>
+<p>Candidate 1.0.0 · C-3c6fe165366c8f38d531e60ec425f0c3c454e2f2243b073f85a3b236503cea44</p>
+<p><strong>Assessed at</strong> <time>2026-11-25T16:03:38.341670Z</time> · <strong>Earliest current complete-run expiry</strong> <time>2026-11-26T15:59:38.335253Z</time></p>
+<p>Frozen by reviewer · Rule reb-rules/1.5 · Ledger high-water mark 2</p>
+<p>No deployment authority. Use this report as evidence of the assessment at its recorded time.</p>
+<div class="facts" aria-label="Required behavior counts"><span>✓ PASS 0</span><span>× FAIL 1</span><span>◷ STALE 0</span><span>? UNKNOWN 0</span></div>
+</header>
+<section aria-labelledby="identity">
+<h2 id="identity">Candidate and approved contract</h2>
+<dl>
+<dt>Manifest SHA-256</dt><dd><code>fb6399a38982efad88825b73d432d8d2ccc3c23101e33cb6da7ed9749b7587d4</code></dd>
+<dt>Baseline SHA-256</dt><dd><code>1f3aadc243cd5f236c248dfb9422c692efc017a87c4b781d564edafb8512808e</code></dd>
+<dt>Baseline</dt><dd>B1 · revision 1 · approved by reviewer at 2026-11-25T16:03:38.326170Z</dd>
+<dt>Predecessor</dt><dd>none</dd>
+
+
+<dt>Evidence SHA-256</dt><dd><code>8e1ac2d79388b5f2f94f439f4a87dd67eb99807f406f5e0cdee4033984426025</code></dd>
+</dl>
+
+<details><summary>Canonical manifest descriptor</summary><pre id="manifest-descriptor">[&#34;reb-manifest/1&#34;,&#34;DEMO&#34;,&#34;R1&#34;,&#34;1.0.0&#34;,&#34;ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad&#34;,&#34;not_applicable&#34;,&#34;not_applicable&#34;,&#34;not_applicable&#34;,&#34;E1&#34;]</pre></details>
+<details><summary>Canonical baseline descriptor</summary><pre id="baseline-descriptor">[&#34;reb-baseline/1&#34;,&#34;DEMO&#34;,&#34;B1&#34;,1,[[&#34;BEH1&#34;,1,true,&#34;Reject unauthorized reads&#34;,&#34;POL1&#34;,1,10000,24,[[&#34;T1&#34;,&#34;Access denied&#34;,true,1]]]]]</pre></details>
+</section>
+<section aria-labelledby="behaviors">
+<h2 id="behaviors">Behavior assessments</h2>
+<ul><li><a href="#behavior-BEH1">BEH1 · FAIL</a></li></ul>
+
+
+<article id="behavior-BEH1">
+<h3>BEH1 · FAIL</h3>
+<p>Reject unauthorized reads</p>
+<p>Required · behavior revision 1 · policy POL1 revision 1</p>
+<p>Pass mark 10000 basis points · maximum age 24 hours · current pass count 1 of 1 planned</p>
+<p>Current run <strong>passing-rerun</strong></p>
+<details><summary>Approved test plan</summary><ul><li>T1 · Access denied · 1 attempts · must-pass true</li></ul></details>
+<ul aria-label="Assessment reasons"><li>MUST_PASS_FAILED · <a href="#runid-original-fail">original-fail</a> · T1 attempt 1</li><li>RATE_BELOW_THRESHOLD · <a href="#runid-original-fail">original-fail</a></li></ul>
+
+
+<section id="runid-original-fail">
+<h4 id="run-1">original-fail · ledger sequence 1</h4>
+<p>Producer finish <time>2026-11-25T15:58:38.331214Z</time> · imported <time>2026-11-25T16:03:38.334059Z</time> · complete true · definitive failure true</p>
+<p>Passed 0 · failed 1 · best possible 0 of 1 · pass mark 10000 basis points</p>
+<p>Original CSV SHA-256 <code>368de51e1b7cbaa01545d0a5affaac526de8c9e1fa57f73a8415abf43d1a9588</code> · Receipt I-368de51e1b7cbaa01545d0a5affaac526de8c9e1fa57f73a8415abf43d1a9588</p>
+<ul><li>MUST_PASS_FAILED · T1 attempt 1</li><li>RATE_BELOW_THRESHOLD</li></ul>
+<ul aria-label="Source row index"><li><a href="#row-1-2">result-original-fail · FAIL · CSV row 2</a></li></ul>
+<ol class="records">
+<li class="row" id="row-1-2">
+<strong>result-original-fail · FAIL</strong>
+<p>Run original-fail · sequence 1 · CSV logical row 2 · physical line 2 · reported run finish 2026-11-25T15:58:38.331214Z</p>
+<p>Test T1 · attempt 1 · result finish 2026-11-25T15:58:38.331214Z · outcome FAIL</p>
+
+
+</li>
+</ol>
+</section>
+
+
+<section id="runid-passing-rerun">
+<h4 id="run-2">passing-rerun · ledger sequence 2</h4>
+<p>Producer finish <time>2026-11-25T15:59:38.335253Z</time> · imported <time>2026-11-25T16:03:38.339209Z</time> · complete true · definitive failure false</p>
+<p>Passed 1 · failed 0 · best possible 1 of 1 · pass mark 10000 basis points</p>
+<p>Original CSV SHA-256 <code>4cfa6e968ffac2b66a2420cbf71f1aa0fb28837320a63f5d8f13d2eaeca0591a</code> · Receipt I-4cfa6e968ffac2b66a2420cbf71f1aa0fb28837320a63f5d8f13d2eaeca0591a</p>
+
+<ul aria-label="Source row index"><li><a href="#row-2-2">result-passing-rerun · PASS · CSV row 2</a></li></ul>
+<ol class="records">
+<li class="row" id="row-2-2">
+<strong>result-passing-rerun · PASS</strong>
+<p>Run passing-rerun · sequence 2 · CSV logical row 2 · physical line 2 · reported run finish 2026-11-25T15:59:38.335253Z</p>
+<p>Test T1 · attempt 1 · result finish 2026-11-25T15:59:38.335253Z · outcome PASS</p>
+
+
+</li>
+</ol>
+</section>
+
+</article>
+
+</section>
+<section aria-labelledby="reproduce">
+<h2 id="reproduce">Reproduce the status offline</h2>
+<ol>
+<li>For each behavior, use its approved test IDs and planned attempts as the roster. Each planned slot counts once. A run is incomplete if any slot is missing or has ERROR, SKIPPED or UNKNOWN. RUN_ONLY leaves every slot missing.</li>
+<li>Each run can reach at most planned slots minus FAIL slots. A failed must-pass slot or a maximum possible score below the pass mark makes that run definitive. Compare the maximum possible count times 10,000 with the threshold in basis points times the planned count.</li>
+<li>Choose the latest producer run finish. Among equal instants select an incomplete run if present, then use the higher ledger sequence among equally complete runs.</li>
+<li>Any definitive failure for this behavior yields FAIL. Otherwise a missing or incomplete current run yields UNKNOWN. A complete current run is STALE only after its oldest result plus the allowed hours. Otherwise it is PASS. Use the recorded assessment time.</li>
+<li>Every required behavior must be PASS for SUFFICIENT. Optional behaviors retain their own statuses outside the required denominator.</li>
+</ol>
+<details><summary>Exact canonical evidence used for the digest</summary><pre id="evidence-descriptor">[&#34;reb-evidence/1&#34;,&#34;fb6399a38982efad88825b73d432d8d2ccc3c23101e33cb6da7ed9749b7587d4&#34;,&#34;1f3aadc243cd5f236c248dfb9422c692efc017a87c4b781d564edafb8512808e&#34;,&#34;reb-rules/1.5&#34;,2,&#34;2026-11-25T16:03:38.341670Z&#34;,[[&#34;reb-results/1.3&#34;,&#34;RESULT&#34;,&#34;result-original-fail&#34;,&#34;DEMO&#34;,&#34;R1&#34;,&#34;fb6399a38982efad88825b73d432d8d2ccc3c23101e33cb6da7ed9749b7587d4&#34;,&#34;1f3aadc243cd5f236c248dfb9422c692efc017a87c4b781d564edafb8512808e&#34;,&#34;BEH1&#34;,&#34;1&#34;,&#34;POL1&#34;,&#34;1&#34;,&#34;T1&#34;,&#34;original-fail&#34;,&#34;1&#34;,&#34;2026-11-25T15:58:38.331214Z&#34;,&#34;2026-11-25T15:58:38.331214Z&#34;,&#34;FAIL&#34;,&#34;&#34;,&#34;&#34;,1],[&#34;reb-results/1.3&#34;,&#34;RESULT&#34;,&#34;result-passing-rerun&#34;,&#34;DEMO&#34;,&#34;R1&#34;,&#34;fb6399a38982efad88825b73d432d8d2ccc3c23101e33cb6da7ed9749b7587d4&#34;,&#34;1f3aadc243cd5f236c248dfb9422c692efc017a87c4b781d564edafb8512808e&#34;,&#34;BEH1&#34;,&#34;1&#34;,&#34;POL1&#34;,&#34;1&#34;,&#34;T1&#34;,&#34;passing-rerun&#34;,&#34;1&#34;,&#34;2026-11-25T15:59:38.335253Z&#34;,&#34;2026-11-25T15:59:38.335253Z&#34;,&#34;PASS&#34;,&#34;&#34;,&#34;&#34;,2]]]</pre></details>
+</section>
+</main>
+</body>
+</html>

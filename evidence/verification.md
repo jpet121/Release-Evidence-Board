@@ -12,6 +12,15 @@ The released executables come from application revision `32ba36c783c46726a25b40b
 
 Public release archives have new packaging and separate checksums. Their executable bytes match the verified artifacts. The original 99,831,828-byte engineering ZIP remains preserved locally. No local database is included.
 
+## Replay of the published Linux executable
+
+The Linux executable listed above produced two frozen reports on November 25, 2026. The reviewer approved baseline B1 and imported synthetic CSVs through the local application. Candidate R1 retained its must-pass failure after a passing rerun. Candidate R2 used the corrected environment E2 and received a SUFFICIENT assessment after a fresh pass. Each report contains its own CSV row references and digests.
+
+| Frozen report | Expected assessment | SHA-256 of the HTML file |
+| --- | --- | --- |
+| [blocked-rerun-report.html](../examples/blocked-rerun-report.html) | BLOCKED | `2504fe223f2869281e99c874d3112f5de0c40e1b8a88b83ee9748fd5168d02cd` |
+| [corrected-successor-report.html](../examples/corrected-successor-report.html) | SUFFICIENT | `fcb41956dbccff9b08bf5c1b08871cf569c60215843c4657b80f66a036662347` |
+
 ## Measured production coverage
 
 Ticket 80 closed at verified metadata revision `00e53731938780ae4faaf3870bc4e5ef53ea08fe`. Source manifest: `aa74895f247b81b3b3f575a3fa4f232fa3f2ce2dc89fe8f1319cd80edf3b66a8`.

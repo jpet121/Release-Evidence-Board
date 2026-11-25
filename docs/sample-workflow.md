@@ -1,6 +1,6 @@
 # Try a synthetic release review
 
-This sample uses synthetic data. It does not prove that a producer tested a real build. Use a new database from [Run it](run-locally.md). Keep existing databases unchanged.
+Start with the [two completed reports (.zip)](https://github.com/jpet121/Release-Evidence-Board/raw/refs/heads/main/examples/release-review-reports.zip) to inspect the results offline. To repeat the review, use the steps below with a new [local database](run-locally.md). All test results are synthetic.
 
 ## Approve a baseline
 
@@ -47,13 +47,13 @@ The build digest is synthetic. Create the candidate. It shows BLOCKED because ru
 
 Open **Candidate lineage and descriptors**. Record the manifest digest and approved baseline digest.
 
-## Prepare a sample CSV
+## Prepare a result for import
 
-Open a second terminal in the extracted `release-evidence-board` folder. Replace all four placeholders with the recorded values.
+Open a second terminal in the extracted `release-evidence-board` folder. Use the generator for your system. Enter the four values from the approved baseline and candidate. The first file records a failure on R1. Change the release, manifest, outcome, and filename when the steps below call for a new run.
 
 ### Windows PowerShell
 
-Run these commands:
+Enter your values and run the block.
 
 ```powershell
 $demoManifest = 'COPY_ACTUAL_MANIFEST_SHA256'
@@ -63,60 +63,56 @@ $demoPolicyRevisionText = 'COPY_ACTUAL_POL1_REVISION'
 if ($demoManifest -cnotmatch '^[a-f0-9]{64}$' -or $demoBaseline -cnotmatch '^[a-f0-9]{64}$' -or $demoBehaviorRevisionText -notmatch '^[1-9][0-9]*$' -or $demoPolicyRevisionText -notmatch '^[1-9][0-9]*$') {
     throw 'Copy the actual approved identities and positive behavior/policy revisions first.'
 }
+$demoRelease = 'R1'
+$demoOutcome = 'FAIL'
+$demoFile = 'original-fail.csv'
 $demoFinished = [DateTime]::UtcNow.ToString('yyyy-MM-ddTHH:mm:ss.ffffffZ')
 $demoRun = 'SYNTHETIC-' + [DateTime]::UtcNow.ToString('yyyyMMddTHHmmssfffffffZ')
 $demoHeader = 'schema_version,record_type,result_id,product_id,release_id,manifest_digest,baseline_digest,behavior_id,behavior_revision,policy_id,policy_revision,test_id,run_id,attempt_index,finished_at,run_finished_at,outcome,source_uri,failure_excerpt'
-$demoRow = "reb-results/1.3,RESULT,$demoRun-RESULT,DEMO,R1,$demoManifest,$demoBaseline,BEH1,$demoBehaviorRevisionText,POL1,$demoPolicyRevisionText,T1,$demoRun,1,$demoFinished,$demoFinished,PASS,,"
-[IO.File]::WriteAllText((Join-Path (Get-Location) 'demo-pass.csv'), $demoHeader + "`n" + $demoRow + "`n", [Text.UTF8Encoding]::new($false))
+$demoRow = "reb-results/1.3,RESULT,$demoRun-RESULT,DEMO,$demoRelease,$demoManifest,$demoBaseline,BEH1,$demoBehaviorRevisionText,POL1,$demoPolicyRevisionText,T1,$demoRun,1,$demoFinished,$demoFinished,$demoOutcome,,"
+[IO.File]::WriteAllText((Join-Path (Get-Location) $demoFile), $demoHeader + "`n" + $demoRow + "`n", [Text.UTF8Encoding]::new($false))
 ```
 
 
 ### Linux Bash
 
-Use this generator instead of the PowerShell commands:
+Enter your values and run the block.
 
 ```bash
 demo_manifest='COPY_ACTUAL_MANIFEST_SHA256'
 demo_baseline='COPY_ACTUAL_APPROVED_BASELINE_SHA256'
 demo_behavior_revision='COPY_ACTUAL_BEH1_REVISION'
 demo_policy_revision='COPY_ACTUAL_POL1_REVISION'
+demo_release='R1'
+demo_outcome='FAIL'
+demo_file='original-fail.csv'
 if [[ ! "$demo_manifest" =~ ^[a-f0-9]{64}$ || ! "$demo_baseline" =~ ^[a-f0-9]{64}$ || ! "$demo_behavior_revision" =~ ^[1-9][0-9]*$ || ! "$demo_policy_revision" =~ ^[1-9][0-9]*$ ]]; then
     printf '%s\n' 'Copy the actual approved identities and revisions first.' >&2
 else
     demo_finished=$(date -u +'%Y-%m-%dT%H:%M:%S.%6NZ')
     demo_run="SYNTHETIC-$(date -u +'%Y%m%dT%H%M%S%NZ')"
-    printf '%s\n' 'schema_version,record_type,result_id,product_id,release_id,manifest_digest,baseline_digest,behavior_id,behavior_revision,policy_id,policy_revision,test_id,run_id,attempt_index,finished_at,run_finished_at,outcome,source_uri,failure_excerpt' > demo-pass.csv
-    printf 'reb-results/1.3,RESULT,%s-RESULT,DEMO,R1,%s,%s,BEH1,%s,POL1,%s,T1,%s,1,%s,%s,PASS,,\n' "$demo_run" "$demo_manifest" "$demo_baseline" "$demo_behavior_revision" "$demo_policy_revision" "$demo_run" "$demo_finished" "$demo_finished" >> demo-pass.csv
+    printf '%s\n' 'schema_version,record_type,result_id,product_id,release_id,manifest_digest,baseline_digest,behavior_id,behavior_revision,policy_id,policy_revision,test_id,run_id,attempt_index,finished_at,run_finished_at,outcome,source_uri,failure_excerpt' > "$demo_file"
+    printf 'reb-results/1.3,RESULT,%s-RESULT,DEMO,%s,%s,%s,BEH1,%s,POL1,%s,T1,%s,1,%s,%s,%s,,\n' "$demo_run" "$demo_release" "$demo_manifest" "$demo_baseline" "$demo_behavior_revision" "$demo_policy_revision" "$demo_run" "$demo_finished" "$demo_finished" "$demo_outcome" >> "$demo_file"
 fi
 ```
 
-Both generators create a synthetic row for the exact approved contract.
+## Review the original candidate
 
-## Import the result
+1. Open R1 and select **Import results**.
+2. Choose `original-fail.csv` and preview it. Check the candidate, test ID, and outcome. Commit the preview.
+3. Run the same generator again for R1. Keep the same manifest. Change the outcome to `PASS` and the filename to `passing-rerun.csv`. Run the full block to give the new result a fresh run ID and timestamp.
+4. Preview and commit the second CSV. Check the receipt and ledger sequence.
+5. Open the live assessment. The current run passed one of one planned tests. The required behavior shows **FAIL**, and R1 remains **BLOCKED**. Look for `MUST_PASS_FAILED` under T1.
+6. Open **Frozen reports**. Select **Freeze assessment** and download the HTML file.
 
-1. Open R1.
-2. Select **Import results**.
-3. Choose `demo-pass.csv`.
-4. Preview the import.
-5. Check the candidate, baseline, behavior, and run.
-6. Commit the preview.
-7. Check the receipt, original CSV digest, and ledger sequence.
-8. Open the candidate's live assessment.
+An exact retry of either CSV returns its original receipt.
 
-Fresh, complete evidence should show SUFFICIENT, PASS 1, FAIL 0, STALE 0, and UNKNOWN 0. An exact repeat import returns the same receipt. A later pass cannot erase a definitive failure.
+## Review the corrected successor
 
-## Freeze and read offline
+1. Open R1 and select **Record successor**. Use release ID `R2` and environment revision `E2`. Keep the build, application version, and approved baseline. Check that R1 is the predecessor. Record the correction as `Revised synthetic harness from E1 to E2`.
+2. Open R2. The required behavior shows **UNKNOWN**. Record the new manifest digest under **Candidate lineage and descriptors**.
+3. Run the generator again. Set the release to `R2`, use the R2 manifest digest, set the outcome to `PASS`, and use the filename `corrected-run.csv`. Keep the approved baseline digest and revisions.
+4. Preview and commit the CSV to R2. The current assessment shows **SUFFICIENT** with one passing behavior.
+5. Freeze and download the R2 report. Open both downloaded files offline. Follow BEH1 to its test results and CSV row numbers. R1 still shows **BLOCKED**.
 
-1. Open **Frozen reports**.
-2. Select **Freeze assessment**.
-3. Download the HTML report.
-4. Open the downloaded file locally.
-5. Set that browser tab offline.
-6. Reload the file.
-7. Check the report ID, historical status, and counts.
-8. Select BEH1.
-9. Confirm that its evidence opens in the same file.
-10. Check that no external resource requests failed.
-11. Restore **No throttling**.
-
-The frozen status stays historical. Live evidence can later become stale. Do not change identities merely to make a rejected import pass.
+Each report records the assessment at the time the reviewer froze it. Live evidence can later become stale.

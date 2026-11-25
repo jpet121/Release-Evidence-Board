@@ -1,65 +1,55 @@
-# Release Evidence Board | Test evidence and offline release reports
+# Release Evidence Board · A release readiness workbench
 
-**Check the test evidence before you make a release decision.**
+**The rerun passed. Why is this release candidate still blocked?**
 
-A passing test can hide a missing run, an old result, or an earlier failure. Release Evidence Board checks results against an approved behavior contract. It keeps the evidence that caused each assessment.
+Test T1 checks that the application rejects an unauthorized read. The team marked T1 as a must-pass test. It failed on the first run and passed on the second. Both runs used the same build, test environment, and approved tests. Release Evidence Board keeps both results. The reviewer can trace the block to the failed row in the original CSV.
 
-Reviewers approve a baseline. Contributors import test results for an exact candidate. Reviewers can then download a frozen HTML report and read it offline.
+![The original candidate is BLOCKED. The passing rerun points to CSV row 2. The report identifies the earlier must-pass failure for T1.](docs/images/social-preview.png)
 
-**Example.** A required test fails. A later run passes. The candidate stays **BLOCKED** because the earlier definitive failure remains. Record a successor when execution inputs or the approved contract change. Collect new evidence for that successor.
+| Candidate | Evidence | Assessment |
+| --- | --- | --- |
+| Original · R1 | T1 fails in environment E1. A second run passes. | **BLOCKED**. The earlier failure still applies. |
+| Successor · R2 | The team corrects the test environment and records E2. | **BLOCKED**. The required behavior starts as **UNKNOWN** until R2 has its own evidence. |
+| Successor · R2 | A fresh run passes T1 in E2. | **SUFFICIENT**. R1 keeps its frozen failure record. |
 
-![The working app shows a synthetic candidate, its approved baseline, and PASS, FAIL, STALE and UNKNOWN counts](docs/images/candidate-evidence.png)
+**[Download both offline reports (.zip)](https://github.com/jpet121/Release-Evidence-Board/raw/refs/heads/main/examples/release-review-reports.zip)**. Extract the files and open `blocked-rerun-report.html` first. Find `original-fail` and `passing-rerun`. Open `corrected-successor-report.html` to see what changed. The released Linux app produced both reports from synthetic test results.
 
-*Actual Windows app at application revision `32ba36c`. Synthetic data. SUFFICIENT describes the candidate's evidence; it does not authorize deployment.*
+[Run this review yourself](docs/sample-workflow.md) · [Read the test for this rule](internal/board/followup_decision_edges_test.go#L90)
 
-**[Download](https://github.com/jpet121/Release-Evidence-Board/releases)** · **[Run it](docs/run-locally.md)** · **[Try the sample](docs/sample-workflow.md)** · **[See a report](examples/frozen-report.html)** · **[View test results](evidence/verification.md)**
+<details>
+<summary>See the corrected candidate in the application</summary>
 
-## What the app does
+![The Windows app shows a sufficient candidate with one passing behavior and zero failed, stale, or unknown behaviors.](docs/images/candidate-evidence.png)
 
-- Approve a behavior baseline with required tests, pass thresholds, and evidence age limits.
-- Identify a candidate by its build, environment, and approved baseline.
-- Preview a CSV import. Check the projected assessment before you commit.
-- Keep the original CSV, import receipt, ledger sequence, and result records.
-- Show PASS, FAIL, STALE, or UNKNOWN for each behavior.
-- Freeze an assessment into one HTML file with evidence and reproduction steps.
-- Control access by role. Back up, restore, revalidate, and purge evidence with operator procedures.
+The Windows capture shows the corrected example in the local review screen. A reviewer can use the evidence to advise the release owner. The release owner decides whether to deploy.
 
-The Go server runs locally. Your browser shows the interface. The supplied Windows and Linux executables do not need a Go SDK. Optional AI features are off.
+</details>
 
-## Run it
+## Run it locally
 
-Download an archive from **Releases**. Extract it. Open a terminal in its `release-evidence-board` folder. Create the `data` directory.
+Download the archive for your computer. Check its SHA-256 checksum, extract it, and follow the setup guide to start the local server and sign in. The prebuilt app opens in your browser and needs no Go installation.
 
-Windows PowerShell:
+[Windows x64 (.zip)](https://github.com/jpet121/Release-Evidence-Board/releases/download/v1.0.0-m1-rc.1/Release-Evidence-Board-M1-Windows.zip) · [Linux x64 (.tar.gz)](https://github.com/jpet121/Release-Evidence-Board/releases/download/v1.0.0-m1-rc.1/Release-Evidence-Board-M1-Linux.tar.gz) · [Checksums](https://github.com/jpet121/Release-Evidence-Board/releases/download/v1.0.0-m1-rc.1/SHA256SUMS.txt) · [Setup and sign-in](docs/run-locally.md)
 
-```powershell
-New-Item -ItemType Directory -Force .\data | Out-Null
-.\bin\windows-amd64\release-evidence-board.exe init -db .\data\evidence.db -project pilot -product DEMO -actor reviewer
-.\bin\windows-amd64\release-evidence-board.exe serve -db .\data\evidence.db -project pilot -product DEMO -listen 127.0.0.1:8080
-```
+## What survives a retry, an export, or a restore?
 
-Run `init` only for a new database. Save the password it prints. Open **http://127.0.0.1:8080/login**. Sign in as `reviewer`. If the database already exists, use its original password and skip `init`.
+| Operation | What the reviewer keeps |
+| --- | --- |
+| Preview and commit a CSV | The preview shows the projected assessment. The app saves the results, original CSV, and receipt together. An exact retry returns the original receipt. |
+| Freeze a review | The HTML file records the assessment time, approved tests, run IDs, CSV rows, and source digests. It works offline after the live evidence expires. |
+| Purge old evidence | A purge preserves shared CSV bytes while a retained candidate still needs them. |
+| Restore a backup | The app checks the backup. A reviewer must revalidate the restored store before assessments and exports resume. |
 
-[Windows and Linux instructions](docs/run-locally.md) include checksum checks, source builds, shutdown, and setup errors.
+[Design and safeguards](docs/design.md) · [Backup, restore, and recovery](docs/operators.md) · [Tests for these safeguards](evidence/verification.md#functional-and-fault-verification)
 
-## Keep the evidence useful
+## Verification and release status
 
-The app commits CSV evidence and its receipt in one database transaction. A repeated import returns the original receipt. A purge cannot remove shared CSV bytes while a retained candidate still needs them.
+This M1 prerelease is for synthetic evaluation. The engineering record for application revision `32ba36c` reports 100% measured production line and branch coverage on Windows and Linux, with zero exclusions. It includes recovery tests, browser checks, and targeted mutation tests.
 
-A frozen report records the assessment time and exact evidence. Its status stays historical when live evidence becomes stale. The downloaded report needs no server, script, font service, or network connection.
+Formal acceptance is still open. The team needs manual accessibility observations, including Safari with VoiceOver, and capacity and recovery results on the specified reference machine. The full mutation campaign is deferred under an M1 exception.
 
-Backups have a checksum. A restored store needs reviewer revalidation before new assessments and exports resume. [Design and safeguards](docs/design.md) · [Backup and restore](docs/operators.md)
+[Verification results and limits](evidence/verification.md) · [Public Windows and Linux checks](https://github.com/jpet121/Release-Evidence-Board/actions/workflows/verify.yml) · [Prerelease files and notes](https://github.com/jpet121/Release-Evidence-Board/releases/tag/v1.0.0-m1-rc.1)
 
-## What the tests show
+## Maintain the project
 
-The unchanged application has **100% measured production line and branch coverage, with zero exclusions**, on Windows and Linux. Go/template measurements are 4,139/4,139 lines and 3,974/3,974 outcomes per target. CSS measurements are 74/74 lines and 6/6 outcomes on each of four recorded clients.
-
-Retained verification includes test suites, race checks, browser journeys, recovery faults, and targeted mutation checks. [Results, source identities, and limits](evidence/verification.md)
-
-This M1 candidate is for synthetic evaluation. Formal acceptance still needs manual accessibility and qualified reference-host observations. Safari and VoiceOver evidence is missing. The full mutation campaign is paused under an explicit M1 exception. Missing checks are not counted as passed.
-
-## Maintain it
-
-[Contribute](CONTRIBUTING.md) · [Report a defect](https://github.com/jpet121/Release-Evidence-Board/issues) · [Security reports](SECURITY.md) · [Change log](CHANGELOG.md)
-
-Source builds use Go 1.27.4. The repository includes the application tests. Behavior fixes need a failing test before the fix. The production coverage requirement remains 100% for lines and branches. Ordinary CI tests do not reproduce the qualified coverage campaign.
+[Build and contribute](CONTRIBUTING.md) · [Report a defect](https://github.com/jpet121/Release-Evidence-Board/issues) · [Report a security issue](SECURITY.md) · [Change log](CHANGELOG.md)
