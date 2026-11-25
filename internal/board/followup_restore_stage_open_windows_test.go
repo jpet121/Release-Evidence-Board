@@ -18,7 +18,8 @@ func TestFollowupRestoreCleansWindowsNativeStageOpenRefusal(t *testing.T) {
 		t.Fatal(err)
 	}
 	prior, priorChecksum := readWindowsBackupPair(t, backup)
-	directory := newWindowsBackupPath(t, 32735)
+	parentUnits := windowsStageParentUnits(t)
+	directory := newWindowsBackupPath(t, parentUnits)
 	destination := filepath.Join(directory, "held.db")
 	settings := Settings{ProjectID: secondProject, ProductID: "DEMO", Clock: func() time.Time { return fixture.at }}
 	// A short random decimal suffix can fit. Retry only a verified success
@@ -51,12 +52,12 @@ func TestFollowupRestoreCleansWindowsNativeStageOpenRefusal(t *testing.T) {
 		t.Logf("native %s path=%d parent=%d filename=%s errno=%d", native.Op,
 			windowsBackupPathUnits(native.Path), windowsBackupPathUnits(filepath.Dir(native.Path)), filepath.Base(native.Path), code)
 	}
-	if native == nil || native.Op != "open" || (code != syscall.ERROR_PATH_NOT_FOUND && code != windowsBackupNameTooLong) {
+	if native == nil || native.Op != "open" || !isWindowsLengthRefusal(code) {
 		t.Fatal("restore did not preserve the native exclusive stage-file open error")
 	}
 	stage := filepath.Dir(native.Path)
 	if filepath.Dir(stage) != directory || !strings.HasPrefix(filepath.Base(stage), ".reb-restore-") || filepath.Base(native.Path) != "store.db" ||
-		windowsBackupPathUnits(stage) > 32759 || windowsBackupPathUnits(native.Path) != windowsBackupPathUnits(stage)+9 {
+		windowsBackupPathUnits(stage) > parentUnits+24 || windowsBackupPathUnits(native.Path) != windowsBackupPathUnits(stage)+9 {
 		t.Fatal("native stage-file error did not identify the owned restore stage")
 	}
 	// Recreating the same stage establishes that directory creation fits while the
