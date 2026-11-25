@@ -8,7 +8,7 @@
 6. Obtain separate Standards and Spec reviews. Assessment, import, and offline-report changes also need the recorded critical review method.
 7. Update affected instructions and verification records.
 
-Use Go 1.27.4. Run `go test -count=1 ./...` and `go vet ./...` from the root. Linux storage-fault tests use the `reb_storage_fault` build tag. CI runs ordinary tests and vet on Windows and Ubuntu. It can be started manually or by a pull request.
+Use Go 1.27.4. Run `go test -count=1 ./...` and `go vet ./...` from the root. On Linux, run `bash .github/scripts/test-linux-storage.sh` for the tagged storage-fault tests. The script needs permission to mount and unmount a private 16 MiB filesystem with `sudo`. CI runs ordinary tests and vet on Windows and Ubuntu. It runs for pull requests and for changes to the application, Go dependencies, or this workflow on `main`. You can also start it manually.
 
 Production requirements remain **100% line coverage, 100% branch coverage, and zero exclusions** on Windows and Linux. Go statement coverage is supplemental. It does not establish the required line and branch measurements. The release evidence archive contains the qualified measurement tools and recorded results. Original workstation paths are historical bindings, not portable setup commands.
 

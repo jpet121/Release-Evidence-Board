@@ -5,29 +5,49 @@ import (
 	"errors"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"syscall"
 	"testing"
 	"unicode/utf16"
 )
 
-const windowsBackupNameTooLong = syscall.Errno(206) // ERROR_FILENAME_EXCED_RANGE.
+const (
+	windowsInvalidPathName   = syscall.Errno(123) // ERROR_INVALID_NAME.
+	windowsBackupNameTooLong = syscall.Errno(206) // ERROR_FILENAME_EXCED_RANGE.
+)
+
+func isWindowsLengthRefusal(err error) bool {
+	return errors.Is(err, syscall.ERROR_PATH_NOT_FOUND) ||
+		errors.Is(err, windowsBackupNameTooLong) || errors.Is(err, windowsInvalidPathName)
+}
 
 func TestFollowupBackupRefusesWindowsNativePublicationPaths(t *testing.T) {
 	t.Run("final_rename", func(t *testing.T) {
-		// Native preflight verified that the 32735-unit parent admits the
-		// temporary snapshot but refuses the 32786-unit final name.
-		directory, err := exerciseWindowsBackupPathFault(t, 32735)
+		parentUnits := windowsStageParentUnits(t)
+		directory, err := exerciseWindowsBackupPathFault(t, parentUnits)
 		var rename *os.LinkError
 		if !errors.As(err, &rename) || rename.Op != "rename" ||
-			(!errors.Is(err, syscall.ERROR_PATH_NOT_FOUND) && !errors.Is(err, windowsBackupNameTooLong)) {
+			!isWindowsLengthRefusal(err) {
 			t.Fatal("backup did not preserve the native final rename error")
 		}
 		if filepath.Dir(rename.Old) != directory || filepath.Dir(rename.New) != directory ||
 			!strings.HasPrefix(filepath.Base(rename.Old), "reb-stage-") || !strings.HasSuffix(rename.Old, ".db") ||
 			!strings.HasPrefix(filepath.Base(rename.New), "reb-backup-") || !strings.HasSuffix(rename.New, ".db") ||
-			windowsBackupPathUnits(rename.Old) > 32759 || windowsBackupPathUnits(rename.New) != 32786 {
+			windowsBackupPathUnits(rename.Old) > parentUnits+24 || windowsBackupPathUnits(rename.New) != parentUnits+51 {
 			t.Fatal("native rename error did not identify the owned staged and final paths")
+		}
+		// Repeat the native operation with a new owned source. The path spelling
+		// alone must reproduce the same refusal without the application.
+		if err := os.WriteFile(rename.Old, []byte("control"), 0600); err != nil {
+			t.Fatal("could not recreate the short stage path")
+		}
+		controlErr := os.Rename(rename.Old, rename.New)
+		if !errors.Is(controlErr, rename.Err) {
+			t.Fatal("independent rename did not reproduce the native publication error")
+		}
+		if err := os.Remove(rename.Old); err != nil {
+			t.Fatal("could not remove the native rename control")
 		}
 	})
 }
@@ -150,6 +170,58 @@ func newWindowsBackupPath(t *testing.T, directoryUnits int) string {
 	}
 	t.Logf("owned path root %s, components %d, UTF-16 units %d", root, len(owned), directoryUnits)
 	return directory
+}
+
+// Measure the native boundary on the same volume used by the application test.
+func windowsStageParentUnits(t *testing.T) int {
+	t.Helper()
+	const baseUnits = 32600
+	base := newWindowsBackupPath(t, baseUnits)
+	limit := func(directory bool) int {
+		const maxWidth = 200
+		width := sort.Search(maxWidth, func(index int) bool {
+			path := filepath.Join(base, strings.Repeat("p", index+1))
+			return !windowsControlFits(t, path, directory)
+		})
+		if width == 0 || width == maxWidth {
+			t.Fatal("could not bracket the native path limit on the test volume")
+		}
+		return baseUnits + 1 + width
+	}
+	dirLimit, fileLimit := limit(true), limit(false)
+	// Each randomized stage name can add up to 24 units to its parent.
+	parentUnits := min(dirLimit, fileLimit) - 24
+	if parentUnits+24+len(`\store.db`) <= fileLimit {
+		t.Fatalf("cannot isolate a stage-file refusal: directory limit=%d file limit=%d", dirLimit, fileLimit)
+	}
+	t.Logf("native path controls: directory=%d file=%d parent=%d UTF-16 units", dirLimit, fileLimit, parentUnits)
+	return parentUnits
+}
+
+func windowsControlFits(t *testing.T, path string, directory bool) bool {
+	t.Helper()
+	var err error
+	if directory {
+		err = os.Mkdir(path, 0700)
+	} else {
+		var file *os.File
+		file, err = os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0600)
+		if err == nil {
+			if closeErr := file.Close(); closeErr != nil {
+				t.Fatal(closeErr)
+			}
+		}
+	}
+	if err != nil {
+		if !isWindowsLengthRefusal(err) {
+			t.Fatalf("unexpected native control error at %d UTF-16 units: %v", windowsBackupPathUnits(path), errors.Unwrap(err))
+		}
+		return false
+	}
+	if err := os.Remove(path); err != nil {
+		t.Fatal(err)
+	}
+	return true
 }
 
 func windowsBackupPathUnits(path string) int { return len(utf16.Encode([]rune(path))) }

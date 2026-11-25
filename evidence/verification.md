@@ -2,7 +2,7 @@
 
 ## Exact build
 
-The released executables come from application revision `32ba36c783c46726a25b40b4bec8cf7267178af4`. Later metadata and documentation commits did not change application or test bytes. `SOURCE_IDENTITY.json` binds this public source snapshot to those files.
+The released executables come from application revision `32ba36c783c46726a25b40b4bec8cf7267178af4`. [SOURCE_IDENTITY.json](SOURCE_IDENTITY.json) identifies the application and tests used for the qualified measurements. The [prerelease tag](https://github.com/jpet121/Release-Evidence-Board/tree/v1.0.0-m1-rc.1) preserves those files. The public workflow now measures the native path limit for two Windows test fixtures. The application source and released executables retain their original identities.
 
 | Artifact | SHA-256 |
 | --- | --- |
@@ -46,6 +46,8 @@ Retained Windows and Linux ordinary suites, applicable race checks, vet, vulnera
 
 The clean-extracted Windows workflow passed 28 checkpoints. It exercised baseline approval, candidate creation, import preview and commit, assessment, freezing, download, and offline report use. The later clean-start check passed seven startup, sign-in, and health assertions for the same executable.
 
+The original public CI run exposed two setup problems. Linux lacked the dedicated memory filesystem for the disk-full test. On the hosted Windows runner, a fixed path length caused backup and restore to fail before their intended operations. The public Windows fixtures now measure the usable path length on the test volume. They require the real backup rename or restore file open to fail and reproduce the same error independently. [Original CI run](https://github.com/jpet121/Release-Evidence-Board/actions/runs/45651954815)
+
 The native fault results include controlled Windows write-lock and Linux file-size-limit failures. These prove the tested software safeguards. The cause and exact errno of the original USB interruption remain unverified.
 
 | Risk | Representative production test |
@@ -72,7 +74,7 @@ The documented M1 requirements basis, five behavior interpretations, and local v
 
 ## Repeat ordinary checks
 
-Use Go 1.27.4. From the root, run `go test -count=1 ./...` and `go vet ./...`. On Linux, also use `go test -tags=reb_storage_fault -count=1 ./...` for the controlled storage-fault cases. These commands do not reproduce the qualified line/branch campaign. CI uses ordinary checks and does not start full mutation.
+Use Go 1.27.4. From the root, run `go test -count=1 ./...` and `go vet ./...`. On Linux, also run `bash .github/scripts/test-linux-storage.sh` from the repository root. The script uses `sudo` to mount a private 16 MiB memory filesystem. It runs the tagged tests as your current user and unmounts the filesystem on exit. The disk-full test checks that the app preserves the earlier receipt and frozen report after a real write fails. These commands do not reproduce the qualified line/branch campaign. CI uses ordinary checks and does not start full mutation.
 
 ## Public export custody
 

@@ -2,6 +2,15 @@ name: Ordinary Go checks
 on:
   workflow_dispatch:
   pull_request:
+  push:
+    branches: [main]
+    paths:
+      - 'cmd/**'
+      - 'internal/**'
+      - 'go.mod'
+      - 'go.sum'
+      - '.github/scripts/**'
+      - '.github/workflows/verify.yml'
 permissions:
   contents: read
 jobs:
@@ -22,6 +31,7 @@ jobs:
           cache: true
       - run: go mod verify
       - run: go test -count=1 ./...
-      - if: runner.os == 'Linux'
-        run: go test -tags=reb_storage_fault -count=1 ./...
+      - name: Test storage faults on an isolated Linux filesystem
+        if: runner.os == 'Linux'
+        run: bash .github/scripts/test-linux-storage.sh
       - run: go vet ./...
