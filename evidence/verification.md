@@ -72,7 +72,7 @@ The documented M1 requirements basis, five behavior interpretations, and local v
 
 ## Repeat ordinary checks
 
-Use Go 1.27.4. From the root, run `go test -count=1 ./...` and `go vet ./...`. On Linux, also use `go test -tags=reb_storage_fault -count=1 ./...` for the controlled storage-fault cases. These commands do not reproduce the qualified line/branch campaign. CI uses ordinary checks and does not start full mutation.
+Use Go 1.27.4. From the root, run `go test -count=1 ./...` and `go vet ./...`. On Linux, also run `bash .github/scripts/test-linux-storage.sh` from the repository root. The script uses `sudo` to mount a private 16 MiB memory filesystem. It runs the tagged tests as your current user and unmounts the filesystem on exit. The disk-full test checks that the app preserves the earlier receipt and frozen report after a real write fails. These commands do not reproduce the qualified line/branch campaign. CI uses ordinary checks and does not start full mutation.
 
 ## Public export custody
 
